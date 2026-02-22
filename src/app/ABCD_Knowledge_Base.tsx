@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { BookOpen, Activity, LayoutGrid, FileSearch, ArrowRight, Info, Microscope } from 'lucide-react';
 
 const ABCD_Knowledge_Base = () => {
@@ -14,8 +15,8 @@ const ABCD_Knowledge_Base = () => {
             </span>
           </div>
           <div className="flex gap-6 text-[11px] font-bold uppercase tracking-wider text-slate-600">
-            <button className="hover:text-indigo-600 transition-colors">ICD-11 Reference</button>
-            <button className="hover:text-indigo-600 transition-colors">MNT Protocols</button>
+            <Link href="/resources" className="hover:text-indigo-600 transition-colors">ICD-11 Reference</Link>
+            <Link href="/resources" className="hover:text-indigo-600 transition-colors">MNT Protocols</Link>
           </div>
         </div>
       </header>
@@ -28,17 +29,17 @@ const ABCD_Knowledge_Base = () => {
               <h4 className="text-[10px] font-black text-indigo-600 uppercase tracking-[0.2em] mb-6">Pathophysiology</h4>
               <ul className="space-y-4 text-sm font-semibold text-slate-500">
                 <li className="flex items-center gap-2 text-slate-900"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500" /> Adiposopathy (Sick Fat)</li>
-                <li className="pl-3.5 hover:text-indigo-600 transition-all cursor-pointer">Lipotoxicity Markers</li>
-                <li className="pl-3.5 hover:text-indigo-600 transition-all cursor-pointer">Cytokine Signaling</li>
+                <Link href="/about" className="pl-3.5 hover:text-indigo-600 transition-all cursor-pointer block">Lipotoxicity Markers</Link>
+                <Link href="/about" className="pl-3.5 hover:text-indigo-600 transition-all cursor-pointer block">Cytokine Signaling</Link>
               </ul>
             </section>
 
             <section>
               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Staging System</h4>
               <ul className="space-y-4 text-sm font-semibold text-slate-500">
-                <li className="pl-3.5 hover:text-slate-900 cursor-pointer">Stage 0: Pre-clinical</li>
-                <li className="pl-3.5 hover:text-slate-900 cursor-pointer">Stage 1: Sub-clinical</li>
-                <li className="pl-3.5 hover:text-slate-900 cursor-pointer text-indigo-600 underline underline-offset-4">Stage 2: Clinical Dysfunction</li>
+                <Link href="/stages" className="pl-3.5 hover:text-slate-900 cursor-pointer block">Stage 0: Pre-clinical</Link>
+                <Link href="/stages" className="pl-3.5 hover:text-slate-900 cursor-pointer block">Stage 1: Sub-clinical</Link>
+                <Link href="/stages" className="pl-3.5 hover:text-slate-900 cursor-pointer text-indigo-600 underline underline-offset-4 block">Stage 2: Clinical Dysfunction</Link>
               </ul>
             </section>
 
@@ -104,14 +105,14 @@ const ABCD_Knowledge_Base = () => {
                 <div className="space-y-6">
                   <span className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] border-b border-slate-200 block pb-2">Metabolic Domain</span>
                   <ul className="space-y-4">
-                    <li className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 flex justify-between items-center group cursor-pointer hover:border-indigo-400 transition-all">
+                    <Link href="/complications" className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 flex justify-between items-center group cursor-pointer hover:border-indigo-400 transition-all block">
                       <span className="text-sm font-bold">Type 2 Diabetes</span>
                       <ArrowRight size={14} className="text-slate-300 group-hover:text-indigo-600 transition-colors" />
-                    </li>
-                    <li className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 flex justify-between items-center group cursor-pointer hover:border-indigo-400 transition-all">
+                    </Link>
+                    <Link href="/complications" className="p-4 bg-white rounded-xl shadow-sm border border-slate-100 flex justify-between items-center group cursor-pointer hover:border-indigo-400 transition-all block">
                       <span className="text-sm font-bold">Dyslipidemia</span>
                       <ArrowRight size={14} className="text-slate-300 group-hover:text-indigo-600 transition-colors" />
-                    </li>
+                    </Link>
                   </ul>
                 </div>
 

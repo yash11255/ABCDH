@@ -2,11 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Play, Pause, Activity } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-[#05070a] text-white font-sans">
+    <section className="relative h-[calc(100vh-90px)] min-h-[700px] w-full overflow-hidden bg-[#05070a] text-white font-sans">
       {/* 1. Background: Video Metabolic Health Visualization */}
       <div className="absolute inset-0 z-0">
         <video
@@ -17,40 +17,7 @@ export default function HeroSection() {
           playsInline
           className="object-cover object-center w-full h-full scale-105 animate-subtle-zoom opacity-40"
         />
-        // ...existing code...
       </div>
-
-      {/* 2. Precision Navigation */}
-      <header className="relative z-20">
-        <nav className="flex items-center justify-between px-10 py-8 md:px-20">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="p-2 bg-blue-600 rounded-lg">
-                <Activity size={20} className="text-white" />
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-xl font-serif tracking-tight leading-none uppercase">
-                ABCD <span className="font-light italic text-blue-400">Clinical Portal</span>
-              </h2>
-              <p className="text-[8px] uppercase tracking-[0.4em] font-bold mt-1 text-slate-500">
-                Adiposity-Based Chronic Disease
-              </p>
-            </div>
-          </div>
-          
-          <div className="hidden lg:flex items-center space-x-12">
-            <div className="flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold text-slate-300">
-              {['Pathophysiology', 'Assessment', 'Complications', 'Management'].map((item) => (
-                <a key={item} href="#" className="hover:text-blue-400 transition-colors">
-                  {item}
-                </a>
-              ))}
-            </div>
-            <button className="border border-blue-500/50 hover:bg-blue-600 text-white px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-500 backdrop-blur-md">
-              Diagnostic Intake
-            </button>
-          </div>
-        </nav>
-      </header>
 
       {/* 3. Hero Content: ABCD Focus */}
       <div className="relative z-10 flex h-[calc(100%-120px)] flex-col justify-center px-10 md:px-24">
