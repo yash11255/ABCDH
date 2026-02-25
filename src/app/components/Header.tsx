@@ -34,9 +34,9 @@ export default function Header() {
             <h2 className={`text-lg font-serif tracking-tight leading-none uppercase transition-colors duration-300 ${
               isScrolled ? 'text-slate-900' : 'text-white'
             }`}>
-              ABCD <span className={`font-light italic transition-colors duration-300 ${
+               <span className={`font-light italic transition-colors duration-300 ${
                 isScrolled ? 'text-blue-600' : 'text-blue-300'
-              }`}>Clinical Portal</span>
+              }`}>ABCD Health</span>
             </h2>
             <p className={`text-[8px] uppercase tracking-[0.4em] font-bold mt-1 transition-colors duration-300 ${
               isScrolled ? 'text-slate-500' : 'text-slate-300'
