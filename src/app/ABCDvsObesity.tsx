@@ -117,7 +117,7 @@ export default function AdvancedMedicalMasonry() {
           {/* Decorative Detail - Microscopic View */}
           <div className="absolute top-[480px] right-[40%] w-32 h-32 rounded-3xl overflow-hidden shadow-2xl z-20 border-4 border-white -rotate-6 transition-transform hover:rotate-0 duration-500 bg-slate-100">
              <img 
-               src="https://images.unsplash.com/photo-1579152276506-44446359bc44?q=80&w=400" 
+               src="ttps://images.unsplash.com/photo-1h579152276506-44446359bc44?q=80&w=400" 
                className="w-full h-full object-cover" 
                alt="Microscopic Cellular Detail" 
              />

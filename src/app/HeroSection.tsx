@@ -1,12 +1,12 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image';
-import { Play, Pause } from 'lucide-react';
+// import Image from 'next/image';
+import { Play } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[calc(100vh-90px)] min-h-[700px] w-full overflow-hidden bg-[#05070a] text-white font-sans">
+    <section className="relative h-[calc(100vh-90px)] min-h-175 w-full overflow-hidden bg-[#05070a] text-white font-sans">
       {/* 1. Background: Video Metabolic Health Visualization */}
       <div className="absolute inset-0 z-0">
         <video
@@ -50,7 +50,7 @@ export default function HeroSection() {
             </div>
             <div className="space-y-1">
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">The ABCD Framework</p>
-              <p className="text-[12px] font-light text-slate-400 max-w-[220px]">
+              <p className="text-[12px] font-light text-slate-400 max-w-55">
                 Understand the 4 stages of adiposity-based chronic disease.
               </p>
             </div>
@@ -60,8 +60,8 @@ export default function HeroSection() {
 
       {/* 4. Stage Indicator (Bottom Left) */}
       <div className="absolute bottom-12 left-24 hidden md:flex gap-12 text-white/30 text-[10px] font-bold tracking-[0.4em] uppercase">
-        <span className="text-blue-500 border-b border-blue-500 pb-2 transition-all">Stage 1</span>
-        <span className="hover:text-white transition-all cursor-pointer">Stage 2</span>
+        <span className="text-blue-500 border-b border-blue-500 pb-2 transition-all cursor-pointer" onClick={() => window.location.href='/stages'}>Stage 1</span>
+        <span className="hover:text-white transition-all cursor-pointer" onClick={() => window.location.href='/stages'}>Stage 2</span>
         <span className="hover:text-white transition-all cursor-pointer">Stage 3</span>
         <span className="hover:text-white transition-all cursor-pointer">Stage 4</span>
       </div>

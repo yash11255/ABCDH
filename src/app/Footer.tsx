@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube, Instagram, ChevronRight, Activity } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube, Instagram, Activity } from 'lucide-react';
 
 export default function ABCDFooter() {
   return (
@@ -136,18 +136,6 @@ export default function ABCDFooter() {
             </div>
           </div>
 
-          {/* Placeholder for Medical App Links (Common in Hospital Footers) */}
-          <div className="flex items-center gap-4">
-            <span className="text-sm font-bold text-slate-900">Get the Clinical App</span>
-            <div className="flex gap-2">
-              <button className="px-3 py-1.5 bg-slate-900 text-white text-xs font-bold rounded-sm hover:bg-slate-800 transition-colors">
-                App Store
-              </button>
-              <button className="px-3 py-1.5 bg-slate-900 text-white text-xs font-bold rounded-sm hover:bg-slate-800 transition-colors">
-                Google Play
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Legal & Compliance Footer */}
