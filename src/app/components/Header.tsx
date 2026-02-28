@@ -49,7 +49,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-12">
           <div className={`flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${
-            isScrolled ? 'text-slate-600' : 'text-slate-200'
+            isScrolled ? 'text-slate-600' : 'text-slate-900'
           }`}>
             <Link href="/about" className={`transition-colors ${
               isScrolled ? 'hover:text-blue-600' : 'hover:text-white'

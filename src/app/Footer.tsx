@@ -85,10 +85,10 @@ export default function ABCDFooter() {
           <div>
             <h3 className="font-bold text-slate-900 text-sm mb-4">International Network</h3>
             <ul className="space-y-3 text-sm text-slate-700">
-              <li><a href="#" className="hover:underline hover:text-blue-700">Global Care Coordination</a></li>
-              <li><a href="#" className="hover:underline hover:text-blue-700">International Hubs</a></li>
-              <li><a href="#" className="hover:underline hover:text-blue-700">Financial Services</a></li>
-              <li><a href="#" className="hover:underline hover:text-blue-700">Language Interpretation</a></li>
+              <li>Global Care Coordination</li>
+              <li>International Hubs</li>
+              <li>Financial Services</li>
+              <li>Language Interpretation</li>
             </ul>
           </div>
 
@@ -98,15 +98,15 @@ export default function ABCDFooter() {
             <div className="space-y-4 text-sm text-slate-700">
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="text-slate-500 shrink-0 mt-0.5" />
-                <span>8700 Beverly Blvd<br/>Los Angeles, CA 90048</span>
+                <span><br/></span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-slate-500 shrink-0" />
-                <a href="tel:+13104233277" className="hover:underline hover:text-blue-700">+1 (310) 423-3277</a>
+                <a href="tel:+13104233277" className="hover:underline hover:text-blue-700"></a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-slate-500 shrink-0" />
-                <a href="mailto:support@abcd-precision.com" className="hover:underline hover:text-blue-700">support@abcd-portal.com</a>
+                <a href="mailto:support@abcd-precision.com" className="hover:underline hover:text-blue-700">support@abcd.health</a>
               </div>
             </div>
           </div>
@@ -118,21 +118,21 @@ export default function ABCDFooter() {
           <div className="flex items-center gap-4">
             <span className="text-sm font-bold text-slate-900">Follow Us</span>
             <div className="flex gap-3">
-              <a href="#" className="w-8 h-8 bg-slate-300 hover:bg-blue-700 hover:text-white text-slate-700 flex items-center justify-center rounded-sm transition-colors">
+              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Twitter size={16} />
-              </a>
-              <a href="#" className="w-8 h-8 bg-slate-300 hover:bg-blue-700 hover:text-white text-slate-700 flex items-center justify-center rounded-sm transition-colors">
+              </span>
+              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Youtube size={16} />
-              </a>
-              <a href="#" className="w-8 h-8 bg-slate-300 hover:bg-blue-700 hover:text-white text-slate-700 flex items-center justify-center rounded-sm transition-colors">
+              </span>
+              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Facebook size={16} />
-              </a>
-              <a href="#" className="w-8 h-8 bg-slate-300 hover:bg-blue-700 hover:text-white text-slate-700 flex items-center justify-center rounded-sm transition-colors">
+              </span>
+              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Linkedin size={16} />
-              </a>
-              <a href="#" className="w-8 h-8 bg-slate-300 hover:bg-blue-700 hover:text-white text-slate-700 flex items-center justify-center rounded-sm transition-colors">
+              </span>
+              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Instagram size={16} />
-              </a>
+              </span>
             </div>
           </div>
 
@@ -141,13 +141,13 @@ export default function ABCDFooter() {
         {/* Legal & Compliance Footer */}
         <div className="flex flex-col gap-6">
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-blue-800 font-medium">
-            <a href="#" className="hover:underline">Terms & Conditions</a>
-            <a href="#" className="hover:underline">Privacy Policy</a>
-            <a href="#" className="hover:underline">Notice of Privacy Practices</a>
-            <a href="#" className="hover:underline">Notice of Nondiscrimination</a>
-            <a href="#" className="hover:underline">Digital Accessibility Statement</a>
-            <a href="#" className="hover:underline">Site Map</a>
-            <a href="#" className="hover:underline">Manage Cookies</a>
+            <Link href="/terms-and-conditions" className="hover:underline">Terms & Conditions</Link>
+            <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+            <span>Notice of Privacy Practices</span>
+            <span>Notice of Nondiscrimination</span>
+            <span>Digital Accessibility Statement</span>
+            <span>Site Map</span>
+            <span>Manage Cookies</span>
           </div>
           
           <p className="text-xs text-slate-500 leading-relaxed">

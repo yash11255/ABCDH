@@ -99,7 +99,7 @@ export default function About() {
               {/* What is ABCD */}
               <div id="definition" className="scroll-mt-12">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">What is ABCD?</h2>
-                <div className="prose max-w-none text-slate-700 leading-relaxed mb-8">
+                <div className="prose max-w-none text-slate-700 leading-relaxed mb-8 dark:prose-invert">
                   <p className="mb-4">
                     <strong>ABCD</strong> stands for <strong>Adiposity-Based Chronic Disease</strong>. It's a diagnostic framework that replaces "obesity" with a focus on metabolic dysfunction rather than body mass index alone.
                   </p>

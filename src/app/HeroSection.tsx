@@ -60,10 +60,10 @@ export default function HeroSection() {
 
       {/* 4. Stage Indicator (Bottom Left) */}
       <div className="absolute bottom-12 left-24 hidden md:flex gap-12 text-white/30 text-[10px] font-bold tracking-[0.4em] uppercase">
-        <span className="text-blue-500 border-b border-blue-500 pb-2 transition-all cursor-pointer" onClick={() => window.location.href='/stages'}>Stage 1</span>
-        <span className="hover:text-white transition-all cursor-pointer" onClick={() => window.location.href='/stages'}>Stage 2</span>
-        <span className="hover:text-white transition-all cursor-pointer">Stage 3</span>
-        <span className="hover:text-white transition-all cursor-pointer">Stage 4</span>
+        <span className="text-blue-500 border-b border-blue-500 pb-2 transition-all cursor-pointer" onClick={() => window.location.href='/stages#stage-1'}>Stage 1</span>
+        <span className="hover:text-white transition-all cursor-pointer" onClick={() => window.location.href='/stages#stage-2'}>Stage 2</span>
+        <span className="hover:text-white transition-all cursor-pointer" onClick={() => window.location.href='/stages#stage-3'}>Stage 3</span>
+        <span className="hover:text-white transition-all cursor-pointer" onClick={() => window.location.href='/stages#stage-4'}>Stage 4</span>
       </div>
 
       <style jsx global>{`
