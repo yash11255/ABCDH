@@ -95,14 +95,14 @@ export default function Header() {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="lg:hidden border-t border-slate-100 bg-slate-50 px-6 py-4 space-y-2">
-          <Link href="/" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Home</Link>
-          <Link href="/about" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">About ABCD</Link>
-          <Link href="/stages" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Stages</Link>
-          <Link href="/complications" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Complications</Link>
-          <Link href="/resources" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Resources</Link>
-          <Link href="/faq" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">FAQ</Link>
-          <Link href="/knowledge-base" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Knowledge Base</Link>
-          <Link href="/contact" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Contact</Link>
+          <Link href="/" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Home</Link>
+          <Link href="/about" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">About ABCD</Link>
+          <Link href="/stages" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Stages</Link>
+          <Link href="/complications" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Complications</Link>
+          <Link href="/resources" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Resources</Link>
+          <Link href="/faq" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">FAQ</Link>
+          <Link href="/knowledge-base" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Knowledge Base</Link>
+          <Link href="/contact" className="block py-2 px-4 text-slate-900 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Contact</Link>
         </div>
       )}
     </header>
