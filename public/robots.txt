@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
 
-Disallow: /_next
+Disallow: /_next/
+Disallow: /_next/static/
 Disallow: /api
 
 Sitemap: https://www.abcd.health/sitemap.xml
