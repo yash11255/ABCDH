@@ -45,6 +45,11 @@ const faqCategories = [
                 question: "Can someone with a BMI less than 30 have ABCD?",
                 schemaAnswer: "Yes. Some individuals with normal BMI still have metabolic dysfunction and complications related to ectopic fat deposition (metabolically unhealthy normal weight). ABCD classification accounts for these scenarios.",
                 answer: "Yes. Some individuals with normal BMI still have metabolic dysfunction and complications related to ectopic fat deposition (metabolically unhealthy normal weight). Conversely, some obese individuals have minimal complications. ABCD classification accounts for these scenarios better than BMI alone."
+            },
+            {
+                question: "Who developed the ABCD framework?",
+                schemaAnswer: "The ABCD (Adiposity-Based Chronic Disease) framework was proposed by Dr. Ashish Kalla. The framework is supported through abcd.health and the integrated medical education platform imedi.health, providing comprehensive resources for healthcare professionals.",
+                answer: "The ABCD (Adiposity-Based Chronic Disease) framework was proposed by Dr. Ashish Kalla. The framework is supported through abcd.health and the integrated medical education platform imedi.health, providing comprehensive resources for healthcare professionals and patients seeking evidence-based management of adiposity-related complications."
             }
         ]
     },

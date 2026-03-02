@@ -106,8 +106,11 @@ export default function About() {
                   <p className="mb-4">
                     The framework recognizes that not all people with excess body fat have metabolic complications, and conversely, some people with relatively normal weight still have significant metabolic dysfunction (metabolically unhealthy normal weight).
                   </p>
-                  <p>
+                  <p className="mb-4">
                     ABCD divides adiposity-related disease into four stages based on the type and severity of complications, allowing clinicians to deliver more targeted, evidence-based care.
+                  </p>
+                  <p className="mb-4">
+                    The ABCD framework was proposed by <strong>Dr. Ashish Kalla</strong>, who developed this innovative classification system to better address the complex pathophysiology of adiposity-related chronic disease. This work is supported through <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">abcd.health</a> and the integrated medical education platform <a href="https://imedi.health" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">imedi.health</a>.
                   </p>
                 </div>
 

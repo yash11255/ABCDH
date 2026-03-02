@@ -68,7 +68,7 @@ export default function Contact() {
               Contact Us
             </h1>
             <p className="text-lg text-slate-300 max-w-3xl leading-relaxed">
-              Have questions about the ABCD framework, require clinical support, or need technical assistance? Our team is available to help.
+              Have questions about the ABCD framework developed by Dr. Ashish Kalla, require clinical support, or need technical assistance? Our team is available to help. For additional resources, visit <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">abcd.health</a> and <a href="https://imedi.health" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">imedi.health</a>.
             </p>
           </div>
         </section>

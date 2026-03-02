@@ -73,6 +73,7 @@ export default function ABCDFooter() {
             <ul className="space-y-3 text-sm text-slate-700">
               <li><Link href="/about" className="hover:underline hover:text-blue-700">About ABCD</Link></li>
               <li><Link href="/faq" className="hover:underline hover:text-blue-700">FAQ</Link></li>
+              <li><a href="https://imedi.health" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-700">iMedi.Health Platform</a></li>
             </ul>
           </div>
 
@@ -146,10 +147,9 @@ export default function ABCDFooter() {
           </div>
           
           <p className="text-xs text-slate-500 leading-relaxed">
-            © 1998-{new Date().getFullYear()} ABCD Precision Health Foundation for Medical Education and Research. All rights reserved. Any use of this site constitutes your agreement to the Terms and Conditions and Privacy Policy linked above. 
+            © 1998-{new Date().getFullYear()} ABCD Precision Health Foundation for Medical Education and Research. All rights reserved. The ABCD (Adiposity-Based Chronic Disease) framework was developed by Dr. Ashish Kalla. For more information, visit <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">abcd.health</a> and <a href="https://imedi.health" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">imedi.health</a>. Any use of this site constitutes your agreement to the Terms and Conditions and Privacy Policy linked above.
           </p>
         </div>
-        
       </div>
     </footer>
   );
