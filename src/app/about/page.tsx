@@ -79,7 +79,7 @@ export default function About() {
             
             {/* Left Navigation Sidebar */}
             <aside className="md:w-1/4 hidden md:block">
-              <div className="sticky top-8">
+              <div className="sticky top-24">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                   In this article
                 </h3>
@@ -97,7 +97,7 @@ export default function About() {
             <main className="md:w-3/4 space-y-16">
               
               {/* What is ABCD */}
-              <div id="definition" className="scroll-mt-12">
+              <div id="definition" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">What is ABCD?</h2>
                 <div className="prose max-w-none text-slate-700 leading-relaxed mb-8 dark:prose-invert">
                   <p className="mb-4">
@@ -136,7 +136,7 @@ export default function About() {
               </div>
 
               {/* Key Principles */}
-              <div id="principles" className="scroll-mt-12">
+              <div id="principles" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Core Principles of ABCD</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {keyPrinciples.map((principle, idx) => {
@@ -155,7 +155,7 @@ export default function About() {
               </div>
 
               {/* Why ABCD Matters - Re-structured as a clean clinical table/grid */}
-              <div id="significance" className="scroll-mt-12">
+              <div id="significance" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Why ABCD Matters</h2>
                 <div className="border border-slate-200 rounded-sm overflow-hidden">
                   <div className="hidden md:grid grid-cols-3 bg-slate-100 border-b border-slate-200 p-4 font-bold text-slate-900 text-sm uppercase tracking-wider">
@@ -185,7 +185,7 @@ export default function About() {
               </div>
 
               {/* The Four Stages Overview */}
-              <div id="stages" className="scroll-mt-12">
+              <div id="stages" className="scroll-mt-24">
                 <div className="flex justify-between items-end mb-6 pb-2 border-b border-slate-200">
                   <h2 className="text-3xl font-serif text-slate-900">The Four Stages of ABCD</h2>
                   <Link href="/stages" className="text-blue-700 font-semibold hover:underline text-sm hidden md:block">
@@ -212,7 +212,7 @@ export default function About() {
               </div>
 
               {/* Systemic Impact */}
-              <div id="impact" className="scroll-mt-12">
+              <div id="impact" className="scroll-mt-24">
                 <div className="flex justify-between items-end mb-6 pb-2 border-b border-slate-200">
                   <h2 className="text-3xl font-serif text-slate-900">Systemic Impact</h2>
                   <Link href="/complications" className="text-blue-700 font-semibold hover:underline text-sm hidden md:block">

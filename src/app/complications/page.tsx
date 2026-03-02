@@ -106,7 +106,7 @@ export default function Complications() {
             
             {/* Left Navigation (In this article) */}
             <aside className="md:w-1/4 hidden md:block">
-              <div className="sticky top-8">
+              <div className="sticky top-24">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                   Sections
                 </h3>
@@ -130,7 +130,7 @@ export default function Complications() {
               {complications.map((domain) => {
                 const IconComponent = domain.icon;
                 return (
-                  <div key={domain.id} id={domain.id} className="scroll-mt-12 border-b border-slate-200 pb-12 last:border-0">
+                  <div key={domain.id} id={domain.id} className="scroll-mt-24 border-b border-slate-200 pb-12 last:border-0">
                     
                     {/* Domain Header */}
                     <div className="mb-6 flex items-center gap-4">
@@ -206,7 +206,7 @@ export default function Complications() {
         </section>
 
         {/* Comorbidity Interactions - Structured to look like a clinical table/grid */}
-        <section id="comorbidities" className="py-16 px-6 md:px-20 bg-white scroll-mt-12">
+        <section id="comorbidities" className="py-16 px-6 md:px-20 bg-white scroll-mt-24">
           <div className="max-w-[1400px] mx-auto">
             <h2 className="text-3xl font-serif text-slate-900 mb-6">Comorbidity Interactions</h2>
             <p className="text-lg text-slate-700 mb-10 leading-relaxed max-w-3xl">

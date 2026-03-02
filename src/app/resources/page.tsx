@@ -149,7 +149,7 @@ export default function Resources() {
             
             {/* Left Navigation Sidebar */}
             <aside className="md:w-1/4 hidden md:block">
-              <div className="sticky top-8">
+              <div className="sticky top-24">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                   Resource Directory
                 </h3>
@@ -167,7 +167,7 @@ export default function Resources() {
             <main className="md:w-3/4 space-y-16">
               
               {/* Essential Clinical Tools */}
-              <div id="tools" className="scroll-mt-12">
+              <div id="tools" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                   Essential Clinical Tools
                 </h2>
@@ -197,7 +197,7 @@ export default function Resources() {
               </div>
 
               {/* Clinical Guidelines - Structured Table */}
-              <div id="guidelines" className="scroll-mt-12">
+              <div id="guidelines" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                   Clinical Guidelines & Standards
                 </h2>
@@ -230,7 +230,7 @@ export default function Resources() {
               </div>
 
               {/* Calculators & Tools */}
-              <div id="calculators" className="scroll-mt-12">
+              <div id="calculators" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                   Interactive Calculators
                 </h2>
@@ -249,7 +249,7 @@ export default function Resources() {
               </div>
 
               {/* Training Programs */}
-              <div id="training" className="scroll-mt-12">
+              <div id="training" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                   Training & Education Programs
                 </h2>
@@ -277,7 +277,7 @@ export default function Resources() {
               </div>
 
               {/* Additional Resources */}
-              <div id="additional" className="scroll-mt-12">
+              <div id="additional" className="scroll-mt-24">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                   Additional Resources
                 </h2>

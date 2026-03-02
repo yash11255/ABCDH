@@ -163,7 +163,7 @@ export default function FAQ() {
 
                         {/* Left Navigation Sidebar */}
                         <aside className="md:w-1/4 hidden md:block">
-                            <div className="sticky top-8">
+                            <div className="sticky top-24">
                                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                                     Categories
                                 </h3>
@@ -185,7 +185,7 @@ export default function FAQ() {
                         {/* Right Main Content (FAQs) */}
                         <main className="md:w-3/4 space-y-16">
                             {faqCategories.map((category) => (
-                                <div key={category.id} id={category.id} className="scroll-mt-12">
+                                <div key={category.id} id={category.id} className="scroll-mt-24">
                                     <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
                                         {category.title}
                                     </h2>
@@ -205,7 +205,7 @@ export default function FAQ() {
                 </section>
 
                 {/* Contact/Support Section - Clinical Styling */}
-                <section id="support" className="py-16 px-6 md:px-20 bg-slate-100 border-y border-slate-200 scroll-mt-12">
+                <section id="support" className="py-16 px-6 md:px-20 bg-slate-100 border-y border-slate-200 scroll-mt-24">
                     <div className="max-w-[1400px] mx-auto text-center space-y-6">
                         <h2 className="text-3xl font-serif text-slate-900">Require further clinical clarification?</h2>
                         <p className="text-lg text-slate-700 max-w-2xl mx-auto mb-8">

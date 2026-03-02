@@ -63,21 +63,16 @@ export default function ABCDFooter() {
             <h3 className="font-bold text-slate-900 text-sm mb-4">Medical Professionals</h3>
             <ul className="space-y-3 text-sm text-slate-700">
               <li><Link href="/resources" className="hover:underline hover:text-blue-700">Clinical Guidelines</Link></li>
-              <li><Link href="/tools" className="hover:underline hover:text-blue-700">Assessment Tools</Link></li>
               <li><Link href="/knowledge-base" className="hover:underline hover:text-blue-700">Knowledge Base</Link></li>
-              <li><Link href="/training" className="hover:underline hover:text-blue-700">Training & CME</Link></li>
-              <li><Link href="/referrals" className="hover:underline hover:text-blue-700">Refer a Patient</Link></li>
             </ul>
           </div>
 
           {/* Column 3 */}
           <div>
-            <h3 className="font-bold text-slate-900 text-sm mb-4">Research & Data</h3>
+            <h3 className="font-bold text-slate-900 text-sm mb-4">More Information</h3>
             <ul className="space-y-3 text-sm text-slate-700">
-              <li><Link href="/trials" className="hover:underline hover:text-blue-700">Clinical Trials</Link></li>
-              <li><Link href="/laboratories" className="hover:underline hover:text-blue-700">Biomarker Laboratories</Link></li>
-              <li><Link href="/publications" className="hover:underline hover:text-blue-700">Journals & Publications</Link></li>
-              <li><Link href="/faculty" className="hover:underline hover:text-blue-700">Research Faculty</Link></li>
+              <li><Link href="/about" className="hover:underline hover:text-blue-700">About ABCD</Link></li>
+              <li><Link href="/faq" className="hover:underline hover:text-blue-700">FAQ</Link></li>
             </ul>
           </div>
 
@@ -96,14 +91,14 @@ export default function ABCDFooter() {
           <div>
             <h3 className="font-bold text-slate-900 text-sm mb-4">Clinical Contact</h3>
             <div className="space-y-4 text-sm text-slate-700">
-              <div className="flex items-start gap-2">
+              {/* <div className="flex items-start gap-2">
                 <MapPin size={16} className="text-slate-500 shrink-0 mt-0.5" />
                 <span><br/></span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-slate-500 shrink-0" />
                 <a href="tel:+13104233277" className="hover:underline hover:text-blue-700"></a>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-slate-500 shrink-0" />
                 <a href="mailto:support@abcd-precision.com" className="hover:underline hover:text-blue-700">support@abcd.health</a>

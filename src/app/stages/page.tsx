@@ -131,7 +131,7 @@ const StagesDetails = () => {
             
             {/* Left Navigation (In this article) */}
             <aside className="md:w-1/4 hidden md:block">
-              <div className="sticky top-8">
+              <div className="sticky top-24">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                   Sections
                 </h3>
@@ -155,7 +155,7 @@ const StagesDetails = () => {
               {stages.map((stage) => {
                 const IconComponent = stage.icon;
                 return (
-                  <div key={stage.id} id={stage.id} className="scroll-mt-12 border-b border-slate-200 pb-12 last:border-0">
+                  <div key={stage.id} id={stage.id} className="scroll-mt-24 border-b border-slate-200 pb-12 last:border-0">
                     
                     {/* Stage Header */}
                     <div className="mb-6 flex items-center gap-4">
