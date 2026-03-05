@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Microscope, ShieldCheck, Activity, Globe, ChevronRight, Plus, Scan } from 'lucide-react';
+import { Microscope, Activity, Globe, ChevronRight, Plus, Scan, ArrowRight, Mail } from 'lucide-react';
 
 const abcdFramework = [
   { id: 'metabolic', title: 'Metabolic Drivers', subtitle: 'Insulin & Lipid Pathways', img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800' },
@@ -71,8 +71,6 @@ export default function AdvancedMedicalMasonry() {
 
         {/* Right Column: Dynamic Masonry */}
         <div className="hidden lg:block lg:col-span-7 xl:col-span-8 relative h-[850px]">
-          
-          {/* Active Reveal Image (Dynamic) */}
           <div className="absolute top-0 right-0 w-[70%] h-[500px] rounded-[80px] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.1)] z-10 transition-all duration-700">
              <div className="absolute inset-0 bg-slate-900/5 mix-blend-overlay z-10" />
              <img 
@@ -88,7 +86,6 @@ export default function AdvancedMedicalMasonry() {
              </div>
           </div>
 
-          {/* Static Portrait - The "Anchor" */}
           <div className="absolute top-[200px] left-0 w-[42%] h-[600px] rounded-[60px] overflow-hidden shadow-2xl z-30 border-[12px] border-white rotate-1">
              <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000" className="w-full h-full object-cover" alt="Medical Professional" />
              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
@@ -98,7 +95,6 @@ export default function AdvancedMedicalMasonry() {
              </div>
           </div>
 
-          {/* Floating Glass Metric */}
           <div className="absolute bottom-[100px] right-[15%] z-40 bg-white/80 backdrop-blur-2xl p-8 rounded-[40px] shadow-xl border border-white max-w-[280px]">
              <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
@@ -138,8 +134,57 @@ export default function AdvancedMedicalMasonry() {
         </div>
       </div>
 
-      {/* Mobile Sticky CTA */}
-      <div className="lg:hidden mt-4">
+      {/* --- NEW MINIMALIST CONTACT SECTION --- */}
+      <div className="max-w-[1500px] mx-auto mt-20 md:mt-32 relative z-10">
+        <div className="bg-white rounded-[60px] border border-slate-100 shadow-[0_50px_100px_rgba(0,0,0,0.02)] p-10 md:p-20 overflow-hidden relative">
+          {/* Subtle Form Accent */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full blur-3xl -mr-16 -mt-16" />
+          
+          <div className="lg:grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-8 mb-12 lg:mb-0">
+              <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white">
+                <Mail size={24} strokeWidth={1.5} />
+              </div>
+              <div>
+                <h4 className="text-4xl md:text-5xl font-serif text-slate-900 tracking-tight leading-none mb-6">
+                  Inquire <span className="italic font-light text-slate-400">Clinical Integration.</span>
+                </h4>
+                <p className="text-slate-500 font-light text-lg max-w-md">
+                  Have questions about the ABCD staging protocol or interested in collaboration? Our medical desk is here to assist.
+                </p>
+              </div>
+              
+              <div className="pt-4 border-t border-slate-100 inline-block">
+                <p className="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400 mb-2">Primary Contact</p>
+                <p className="text-slate-900 font-bold">clinical@abcd.health</p>
+              </div>
+            </div>
+
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Full Name</label>
+                  <input type="text" placeholder="Dr. John Doe" className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-sm focus:ring-2 focus:ring-blue-600/10 transition-all outline-none text-slate-900" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Email Address</label>
+                  <input type="email" placeholder="john@hospital.com" className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-sm focus:ring-2 focus:ring-blue-600/10 transition-all outline-none text-slate-900" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Message / Inquiry</label>
+                <textarea rows={4} placeholder="How can we help your clinical practice?" className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-sm focus:ring-2 focus:ring-blue-600/10 transition-all outline-none text-slate-900 resize-none"></textarea>
+              </div>
+              <button className="group w-full bg-slate-900 text-white py-5 rounded-2xl font-bold uppercase tracking-[0.3em] text-[10px] flex items-center justify-center gap-3 hover:bg-blue-600 transition-all shadow-xl shadow-slate-900/10">
+                Submit Inquiry <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* ------------------------------------- */}
+
+      <div className="lg:hidden mt-10">
         <button className="w-full bg-slate-900 text-white py-6 rounded-3xl font-bold uppercase tracking-[0.3em] text-[10px] shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition-transform">
           <Microscope size={16} /> Begin Staging Analysis
         </button>
