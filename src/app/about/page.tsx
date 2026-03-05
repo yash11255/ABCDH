@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { CheckCircle2, AlertCircle, TrendingUp, Microscope, Search, ChevronRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle, TrendingUp, Microscope, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
 
@@ -107,8 +107,7 @@ export default function About() {
             <main className="md:w-3/4 space-y-16">
               
               {/* What is ABCD */}
-<<<<<<< HEAD
-              <div id="definition" className="scroll-mt-12">
+              <div id="definition" className="scroll-mt-24">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 border-b border-slate-200 pb-2 gap-4">
                     <h2 className="text-3xl font-serif text-slate-900">What is ABCD?</h2>
                     <img 
@@ -119,11 +118,6 @@ export default function About() {
                     />
                 </div>
                 <div className="prose max-w-none text-slate-700 leading-relaxed mb-8">
-=======
-              <div id="definition" className="scroll-mt-24">
-                <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">What is ABCD?</h2>
-                <div className="prose max-w-none text-slate-700 leading-relaxed mb-8 dark:prose-invert">
->>>>>>> dccbbb2b135e2fa7a202abbe8ce69eecd600506f
                   <p className="mb-4">
                     <strong>ABCD</strong> stands for <strong>Adiposity-Based Chronic Disease</strong>. It's a diagnostic framework that replaces "obesity" with a focus on metabolic dysfunction rather than body mass index alone.
                   </p>
@@ -181,13 +175,8 @@ export default function About() {
                 </div>
               </div>
 
-<<<<<<< HEAD
               {/* Why ABCD Matters */}
-              <div id="significance" className="scroll-mt-12">
-=======
-              {/* Why ABCD Matters - Re-structured as a clean clinical table/grid */}
               <div id="significance" className="scroll-mt-24">
->>>>>>> dccbbb2b135e2fa7a202abbe8ce69eecd600506f
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Why ABCD Matters</h2>
                 <div className="border border-slate-200 rounded-sm overflow-hidden">
                   <div className="hidden md:grid grid-cols-3 bg-slate-100 border-b border-slate-200 p-4 font-bold text-slate-900 text-sm uppercase tracking-wider">
