@@ -63,13 +63,23 @@ export default function About() {
 
         {/* Hero Section */}
         <section className="bg-slate-900 text-white py-16 md:py-20 px-6 md:px-20 border-t-4 border-blue-700">
-          <div className="max-w-[1400px] mx-auto">
-            <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-              Understanding ABCD
-            </h1>
-            <p className="text-lg text-slate-300 max-w-3xl leading-relaxed">
-              Adiposity-Based Chronic Disease (ABCD) is a paradigm shift in how we classify, diagnose, and manage patients with adiposity-related health complications.
-            </p>
+          <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+            <div className="flex-1">
+              <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
+                Understanding ABCD
+              </h1>
+              <p className="text-lg text-slate-300 max-w-2xl leading-relaxed">
+                Adiposity-Based Chronic Disease (ABCD) is a paradigm shift in how we classify, diagnose, and manage patients with adiposity-related health complications.
+              </p>
+            </div>
+            {/* Branded Logo Container */}
+            <div className="bg-white p-6 rounded-lg shadow-2xl shrink-0 transition-transform hover:scale-105">
+              <img 
+                src="/PHOTO-2026-03-01-10-33-42.jpg" 
+                alt="ABCD Health - Resetting Metabolism, Restoring Life" 
+                className="h-20 md:h-28 w-auto object-contain"
+              />
+            </div>
           </div>
         </section>
 
@@ -98,8 +108,16 @@ export default function About() {
               
               {/* What is ABCD */}
               <div id="definition" className="scroll-mt-12">
-                <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">What is ABCD?</h2>
-                <div className="prose max-w-none text-slate-700 leading-relaxed mb-8 dark:prose-invert">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 border-b border-slate-200 pb-2 gap-4">
+                    <h2 className="text-3xl font-serif text-slate-900">What is ABCD?</h2>
+                    <img 
+                      src="/PHOTO-2026-03-01-10-33-42.jpg" 
+                      alt="ABCD Health Logo" 
+                      className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-help" 
+                      title="ABCD: Adiposity-Based Chronic Disease"
+                    />
+                </div>
+                <div className="prose max-w-none text-slate-700 leading-relaxed mb-8">
                   <p className="mb-4">
                     <strong>ABCD</strong> stands for <strong>Adiposity-Based Chronic Disease</strong>. It's a diagnostic framework that replaces "obesity" with a focus on metabolic dysfunction rather than body mass index alone.
                   </p>
@@ -111,7 +129,7 @@ export default function About() {
                   </p>
                 </div>
 
-                {/* Callout Box - Replaces the gradient card */}
+                {/* Callout Box */}
                 <div className="bg-slate-50 border-l-4 border-blue-700 p-6 shadow-sm">
                   <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">ABCD Framework Breakdown</h3>
                   <ul className="space-y-3 text-slate-700">
@@ -154,7 +172,7 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Why ABCD Matters - Re-structured as a clean clinical table/grid */}
+              {/* Why ABCD Matters */}
               <div id="significance" className="scroll-mt-12">
                 <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Why ABCD Matters</h2>
                 <div className="border border-slate-200 rounded-sm overflow-hidden">
