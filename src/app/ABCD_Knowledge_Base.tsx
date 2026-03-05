@@ -65,8 +65,10 @@ const ABCD_Knowledge_Base = () => {
               Defining ABCD.
             </h1>
             <p className="text-xl md:text-2xl text-slate-500 leading-relaxed font-light mb-12">
-              Adiposity-Based Chronic Disease is a diagnostic term that replaces "obesity" with a focus on 
-              <strong> metabolic dysfunction</strong> rather than body mass index alone.
+              Adiposity-Based Chronic Disease is a diagnostic term developed by Dr. Ashish Kalla that replaces "obesity" with a focus on 
+              <strong> metabolic dysfunction</strong> rather than body mass index alone. Explore comprehensive resources at{' '}
+              <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">abcd.health</a> and{' '}
+              <a href="https://imedi.health" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">imedi.health</a>.
             </p>
 
             {/* High-Density Info Cards */}

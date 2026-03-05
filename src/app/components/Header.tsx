@@ -58,22 +58,35 @@ export default function Header() {
           </div>
         </Link>
         
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name}
-              href={link.href} 
-              className="px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-slate-500 hover:text-blue-600 transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          <Link 
-            href="/" 
-            className="ml-4 flex items-center gap-1.5 px-5 py-2 bg-slate-900 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95"
-          >
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center space-x-12">
+          <div className={`flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${
+            isScrolled ? 'text-slate-600' : 'text-slate-900'
+          }`}>
+            <Link href="/about" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>About ABCD</Link>
+            <Link href="/stages" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>Stages</Link>
+            <Link href="/complications" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>Complications</Link>
+            <Link href="/resources" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>Resources</Link>
+            <Link href="/faq" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>FAQ</Link>
+            <Link href="/contact" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+            }`}>Contact</Link>
+          </div>
+          <Link href="/" className={`border transition-all duration-500 px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest ${
+            isScrolled 
+              ? 'border-blue-500/50 text-slate-900 hover:bg-blue-600 hover:text-white' 
+              : 'border-white/50 text-white hover:bg-white hover:text-slate-900'
+          }`}>
             Home
             <ChevronRight size={12} />
           </Link>
@@ -85,18 +98,19 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      <div className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 transition-all duration-300 ${
-        isOpen ? 'max-h-screen opacity-100 shadow-lg' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="p-4 flex flex-col gap-3">
-          {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-xs font-bold uppercase tracking-widest text-slate-700">
-              {link.name}
-            </Link>
-          ))}
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="lg:hidden border-t border-slate-100 bg-slate-50 px-6 py-4 space-y-2">
+          <Link href="/" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Home</Link>
+          <Link href="/about" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">About ABCD</Link>
+          <Link href="/stages" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Stages</Link>
+          <Link href="/complications" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Complications</Link>
+          <Link href="/resources" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Resources</Link>
+          <Link href="/faq" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">FAQ</Link>
+          <Link href="/knowledge-base" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Knowledge Base</Link>
+          <Link href="/contact" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Contact</Link>
         </div>
-      </div>
+      )}
     </header>
   );
 }

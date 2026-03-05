@@ -17,7 +17,7 @@ const stages = [
     title: "Mild/Moderate",
     desc: "Targeted intervention for subclinical complications and organ stress.",
     focus: "Secondary Prevention",
-    image: "https://images.unsplash.com/photo-1579152276506-44446359bc44?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800",
     accent: "bg-emerald-600"
   },
   {

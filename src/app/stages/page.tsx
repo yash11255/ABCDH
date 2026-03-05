@@ -94,7 +94,7 @@ const StagesDetails = () => {
               The Four Stages of ABCD
             </h1>
             <p className="text-lg text-slate-300 max-w-3xl leading-relaxed mb-8">
-              A comprehensive classification system that moves beyond BMI to evaluate the severity of adiposity-related complications and guide clinical management. Effective treatment depends on getting the right diagnosis.
+              A comprehensive classification system developed by Dr. Ashish Kalla that moves beyond BMI to evaluate the severity of adiposity-related complications and guide clinical management. Effective treatment depends on getting the right diagnosis. Learn more at <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">abcd.health</a>.
             </p>
             <div className="flex gap-4">
               <button className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 font-semibold rounded-sm transition-colors">
@@ -131,7 +131,7 @@ const StagesDetails = () => {
             
             {/* Left Navigation (In this article) */}
             <aside className="md:w-1/4 hidden md:block">
-              <div className="sticky top-8">
+              <div className="sticky top-24">
                 <h3 className="text-lg font-bold text-slate-900 mb-4 pb-2 border-b-2 border-slate-200">
                   Sections
                 </h3>
@@ -155,7 +155,7 @@ const StagesDetails = () => {
               {stages.map((stage) => {
                 const IconComponent = stage.icon;
                 return (
-                  <div key={stage.id} id={stage.id} className="scroll-mt-12 border-b border-slate-200 pb-12 last:border-0">
+                  <div key={stage.id} id={stage.id} className="scroll-mt-24 border-b border-slate-200 pb-12 last:border-0">
                     
                     {/* Stage Header */}
                     <div className="mb-6 flex items-center gap-4">

@@ -7,7 +7,7 @@ const abcdFramework = [
   { id: 'metabolic', title: 'Metabolic Drivers', subtitle: 'Insulin & Lipid Pathways', img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800' },
   { id: 'biomechanical', title: 'Biomechanical Stress', subtitle: 'Skeletal Integrity', img: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800' },
   { id: 'cardio', title: 'Cardiometabolic', subtitle: 'Vascular Precision', img: 'https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800' },
-  { id: 'cellular', title: 'Adipose Tissue', subtitle: 'Pathophysiological Analysis', img: 'https://images.unsplash.com/photo-1579152276506-44446359bc44?q=80&w=800' },
+  { id: 'cellular', title: 'Adipose Tissue', subtitle: 'Pathophysiological Analysis', img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800' },
   { id: 'neuro', title: 'Neurometabolic', subtitle: 'Systemic Signaling', img: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800' },
 ];
 
@@ -99,7 +99,7 @@ export default function AdvancedMedicalMasonry() {
           </div>
 
           {/* Floating Glass Metric */}
-          <div className="absolute bottom-[50px] right-[5%] z-40 bg-white/80 backdrop-blur-2xl p-8 rounded-[40px] shadow-xl border border-white max-w-[280px]">
+          <div className="absolute bottom-[100px] right-[15%] z-40 bg-white/80 backdrop-blur-2xl p-8 rounded-[40px] shadow-xl border border-white max-w-[280px]">
              <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-200">
                     <Globe size={20} />
@@ -112,16 +112,6 @@ export default function AdvancedMedicalMasonry() {
              <p className="text-sm text-slate-600 leading-relaxed font-light">
                 Our staging framework aligns with latest clinical consensus reports for metabolic health.
              </p>
-          </div>
-
-          {/* Decorative Detail - Microscopic View */}
-          <div className="absolute top-[480px] right-[40%] w-32 h-32 rounded-3xl overflow-hidden shadow-2xl z-20 border-4 border-white -rotate-6 transition-transform hover:rotate-0 duration-500 bg-slate-100">
-             <img 
-               src="ttps://images.unsplash.com/photo-1h579152276506-44446359bc44?q=80&w=400" 
-               className="w-full h-full object-cover" 
-               alt="Microscopic Cellular Detail" 
-             />
-             <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay" />
           </div>
         </div>
 
