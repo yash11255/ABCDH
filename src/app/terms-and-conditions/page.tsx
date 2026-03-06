@@ -1,6 +1,5 @@
-"use client";
-
 import React from 'react';
+import type { Metadata } from 'next';
 import { 
   Scale, 
   UserCheck, 
@@ -11,6 +10,15 @@ import {
   Ban,
   ScrollText
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions | ABCD Clinical Portal',
+  description:
+    'Review the ABCD Clinical Portal terms and conditions, including site usage, responsibilities, and legal notices.',
+  alternates: {
+    canonical: '/terms-and-conditions',
+  },
+};
 
 const termsSections = [
   {

@@ -7,7 +7,10 @@ import SystemicImpactSection from '../SystemicImpactSection';
 
 export const metadata = {
   title: "Complications | Clinical Portal",
-  description: "Learn about the systemic complications of adiposity across metabolic, biomechanical, cardiovascular, and psychological domains. Framework by Dr. Ashish Kalla - abcd.health"
+  description: "Learn about the systemic complications of adiposity across metabolic, biomechanical, cardiovascular, and psychological domains. Framework by Dr. Ashish Kalla - abcd.health",
+  alternates: {
+    canonical: '/complications',
+  },
 };
 
 export default function Complications() {

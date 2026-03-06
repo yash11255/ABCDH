@@ -6,7 +6,10 @@ import Footer from '../Footer';
 
 export const metadata = {
   title: "About ABCD | Clinical Portal",
-  description: "Learn about the Adiposity-Based Chronic Disease (ABCD) classification system and how it's changing clinical practice."
+  description: "Learn about the Adiposity-Based Chronic Disease (ABCD) classification system and how it's changing clinical practice.",
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function About() {

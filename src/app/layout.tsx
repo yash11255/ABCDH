@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ABCD Clinical Portal | Adiposity-Based Chronic Disease",
   description: "Comprehensive clinical framework for understanding and managing adiposity-based chronic disease with evidence-based staging system and complication-centric care approach.",
+  metadataBase: new URL("https://www.abcd.health"),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

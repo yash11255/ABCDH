@@ -1,8 +1,16 @@
-"use client";
-
 import React from 'react';
+import type { Metadata } from 'next';
 import { ShieldCheck, Lock, Eye, Cookie, UserCheck, FileText, Bell } from 'lucide-react';
 import Header from '../components/Header';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | ABCD Clinical Portal',
+  description:
+    'Read the ABCD Clinical Portal privacy policy, including data handling, security safeguards, and user privacy commitments.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
+};
 
 const policySections = [
   {

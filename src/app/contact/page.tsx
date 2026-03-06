@@ -6,7 +6,10 @@ import Footer from '../Footer';
 
 export const metadata = {
   title: "Contact Us | Clinical Portal",
-  description: "Get in touch with the ABCD Clinical Portal for support, inquiries, and clinical questions."
+  description: "Get in touch with the ABCD Clinical Portal for support, inquiries, and clinical questions.",
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function Contact() {

@@ -7,7 +7,10 @@ import ABCDStages from '../ABCDStages';
 
 export const metadata = {
   title: "ABCD Stages | Clinical Portal",
-  description: "Understand the four stages of Adiposity-Based Chronic Disease (ABCD)."
+  description: "Understand the four stages of Adiposity-Based Chronic Disease (ABCD).",
+  alternates: {
+    canonical: '/stages',
+  },
 };
 
 const StagesDetails = () => {

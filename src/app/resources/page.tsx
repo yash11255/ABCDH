@@ -6,7 +6,10 @@ import Footer from '../Footer';
 
 export const metadata = {
   title: "Clinical Resources | Clinical Portal",
-  description: "Tools, guidelines, and resources for clinical management of ABCD-related complications. Access resources from Dr. Ashish Kalla's ABCD framework via abcd.health and imedi.health."
+  description: "Tools, guidelines, and resources for clinical management of ABCD-related complications. Access resources from Dr. Ashish Kalla's ABCD framework via abcd.health and imedi.health.",
+  alternates: {
+    canonical: '/resources',
+  },
 };
 
 export default function Resources() {

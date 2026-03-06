@@ -8,6 +8,9 @@ import Footer from '../Footer';
 export const metadata = {
     title: "Frequently Asked Questions | ABCD Clinical Portal",
     description: "Find clinical answers and guidelines regarding the Adiposity-Based Chronic Disease (ABCD) classification, staging, and multidisciplinary management.",
+    alternates: {
+        canonical: '/faq',
+    },
     openGraph: {
         title: "ABCD Clinical Framework FAQs",
         description: "Answers to common clinical questions about Adiposity-Based Chronic Disease (ABCD).",
