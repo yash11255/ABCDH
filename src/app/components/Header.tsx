@@ -99,7 +99,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="lg:hidden border-t border-slate-100 bg-slate-50 px-6 py-4 space-y-2">
+        <div className="lg:hidden border-t border-slate-100 bg-slate-50 px-6 py-4 space-y-2 text-slate-700">
           <Link href="/" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Home</Link>
           <Link href="/about" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">About ABCD</Link>
           <Link href="/stages" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Stages</Link>
