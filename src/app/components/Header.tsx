@@ -60,35 +60,34 @@ export default function Header() {
         
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-12">
-          <div className={`flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${
+          <div className={`flex py-5 space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${
             isScrolled ? 'text-slate-600' : 'text-slate-900'
           }`}>
             <Link href="/about" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>About ABCD</Link>
             <Link href="/stages" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>Stages</Link>
             <Link href="/complications" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>Complications</Link>
             <Link href="/resources" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>Resources</Link>
             <Link href="/faq" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>FAQ</Link>
             <Link href="/contact" className={`transition-colors ${
-              isScrolled ? 'hover:text-blue-600' : 'hover:text-white'
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>Contact</Link>
           </div>
           <Link href="/" className={`border transition-all duration-500 px-8 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest ${
             isScrolled 
               ? 'border-blue-500/50 text-slate-900 hover:bg-blue-600 hover:text-white' 
-              : 'border-white/50 text-white hover:bg-white hover:text-slate-900'
+              : 'border-blue-300/50 text-slate-600 hover:bg-white hover:text-slate-900'
           }`}>
             Home
-            <ChevronRight size={12} />
           </Link>
         </div>
 
