@@ -6,8 +6,8 @@ import Footer from '../Footer';
 
 // 1. Enhanced SEO Metadata
 export const metadata = {
-    title: "Frequently Asked Questions | ABCD Clinical Portal",
-    description: "Find clinical answers and guidelines regarding the Adiposity-Based Chronic Disease (ABCD) classification, staging, and multidisciplinary management.",
+    title: "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
+    description: "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
     alternates: {
         canonical: '/faq',
     },
@@ -157,7 +157,7 @@ export default function FAQ() {
                 <section className="bg-slate-900 text-white py-16 md:py-20 px-6 md:px-20 border-t-4 border-blue-700">
                     <div className="max-w-[1400px] mx-auto">
                         <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-                            Frequently Asked Questions
+                            Obesity FAQ: Insulin Resistance Symptoms and Metabolic Syndrome Symptoms
                         </h1>
                         <p className="text-lg text-slate-300 max-w-3xl leading-relaxed">
                             Find clinical answers and guidelines regarding the ABCD classification system, staging protocols, and multidisciplinary management strategies.

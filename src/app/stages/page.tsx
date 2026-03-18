@@ -6,11 +6,65 @@ import Footer from '../Footer';
 import ABCDStages from '../ABCDStages';
 
 export const metadata = {
-  title: "ABCD Stages | Clinical Portal",
-  description: "Understand the four stages of Adiposity-Based Chronic Disease (ABCD).",
+  title: "Obesity Staging Model | ABCD Stage Classification",
+  description: "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
   alternates: {
     canonical: '/stages',
   },
+};
+
+const stagesJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.abcd.health/stages#webpage",
+      url: "https://www.abcd.health/stages",
+      name: "Obesity Staging Model | ABCD Stage Classification",
+      description:
+        "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
+      inLanguage: "en",
+      isPartOf: {
+        "@id": "https://www.abcd.health/#website",
+      },
+      about: {
+        "@id": "https://www.abcd.health/stages#medical-webpage",
+      },
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://www.abcd.health/stages#medical-webpage",
+      url: "https://www.abcd.health/stages",
+      name: "Obesity Staging Model: The Four Stages of ABCD",
+      inLanguage: "en",
+      about: {
+        "@type": "MedicalCondition",
+        name: "Adiposity-Based Chronic Disease",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.abcd.health/stages#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What are the four stages of adiposity-based chronic disease?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The ABCD model includes Stage 1 At Risk, Stage 2 Mild or Moderate, Stage 3 Established disease, and Stage 4 Advanced disease, each defined by complication burden and clinical severity.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Why is obesity stage classification important?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Stage classification helps clinicians match treatment intensity to metabolic and organ-system risk, improving prevention, active management, and long-term outcomes.",
+          },
+        },
+      ],
+    },
+  ],
 };
 
 const StagesDetails = () => {
@@ -88,13 +142,17 @@ const StagesDetails = () => {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(stagesJsonLd) }}
+      />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
         {/* Hero Section: High Contrast, Clinical */}
         <section className="bg-slate-900 text-white py-16 md:py-20 px-6 md:px-20 border-t-4 border-blue-700">
           <div className="max-w-[1400px] mx-auto">
             <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-              The Four Stages of ABCD
+              Obesity Staging Model: The Four Stages of ABCD
             </h1>
             <p className="text-lg text-slate-300 max-w-3xl leading-relaxed mb-8">
               A comprehensive classification system developed by Dr. Ashish Kalla that moves beyond BMI to evaluate the severity of adiposity-related complications and guide clinical management. Effective treatment depends on getting the right diagnosis. Learn more at <a href="https://www.abcd.health" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">abcd.health</a>.
@@ -237,7 +295,7 @@ const StagesDetails = () => {
         {/* Interactive Visualization - Kept clean and separated */}
         <section id="progression" className="py-16 px-6 md:px-20 bg-slate-50 border-y border-slate-200">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">Stage Progression</h2>
+            <h2 className="text-3xl font-serif text-slate-900 mb-8 text-center">Obesity Stage Classification and Progression</h2>
             <div className="bg-white p-8 border border-slate-200 shadow-sm">
               <ABCDStages />
             </div>

@@ -6,11 +6,75 @@ import Footer from '../Footer';
 import SystemicImpactSection from '../SystemicImpactSection';
 
 export const metadata = {
-  title: "Complications | Clinical Portal",
-  description: "Learn about the systemic complications of adiposity across metabolic, biomechanical, cardiovascular, and psychological domains. Framework by Dr. Ashish Kalla - abcd.health",
+  title: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
+  description: "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
   alternates: {
     canonical: '/complications',
   },
+};
+
+const complicationsJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.abcd.health/complications#webpage",
+      url: "https://www.abcd.health/complications",
+      name: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
+      description:
+        "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
+      inLanguage: "en",
+      isPartOf: {
+        "@id": "https://www.abcd.health/#website",
+      },
+      about: {
+        "@id": "https://www.abcd.health/complications#medical-webpage",
+      },
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://www.abcd.health/complications#medical-webpage",
+      url: "https://www.abcd.health/complications",
+      name: "Obesity Complications Beyond the Scale",
+      inLanguage: "en",
+      about: [
+        {
+          "@type": "MedicalCondition",
+          name: "Obesity complications",
+        },
+        {
+          "@type": "MedicalCondition",
+          name: "Insulin resistance",
+        },
+        {
+          "@type": "MedicalCondition",
+          name: "Metabolic syndrome",
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.abcd.health/complications#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What are common obesity complications?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Common obesity complications include insulin resistance, type 2 diabetes, dyslipidemia, sleep apnea, hypertension, cardiovascular disease, and psychosocial complications across multiple domains.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How does visceral fat increase health risk?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Visceral fat contributes to adipose tissue dysfunction, chronic inflammation, and cardiometabolic risk, increasing the likelihood of metabolic syndrome and obesity-related disease progression.",
+          },
+        },
+      ],
+    },
+  ],
 };
 
 export default function Complications() {
@@ -76,13 +140,17 @@ export default function Complications() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(complicationsJsonLd) }}
+      />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
         {/* Hero Section */}
         <section className="bg-slate-900 text-white py-16 md:py-20 px-6 md:px-20 border-t-4 border-blue-700">
           <div className="max-w-[1400px] mx-auto">
             <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-              Complications Beyond the Scale
+              Obesity Complications Beyond the Scale
             </h1>
             <p className="text-lg text-slate-300 max-w-3xl leading-relaxed mb-8">
               ABCD is defined by the severity of complications. We move beyond BMI to understand how adiposity affects four critical health domains and their interconnected pathophysiology.
@@ -211,7 +279,7 @@ export default function Complications() {
         {/* Comorbidity Interactions - Structured to look like a clinical table/grid */}
         <section id="comorbidities" className="py-16 px-6 md:px-20 bg-white scroll-mt-24">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="text-3xl font-serif text-slate-900 mb-6">Comorbidity Interactions</h2>
+            <h2 className="text-3xl font-serif text-slate-900 mb-6">Obesity Related Diseases and Comorbidity Interactions</h2>
             <p className="text-lg text-slate-700 mb-10 leading-relaxed max-w-3xl">
               Complications often interact and compound each other. For example, metabolic dysfunction increases cardiovascular risk, which may limit physical capability, worsening both metabolic and psychological outcomes.
             </p>

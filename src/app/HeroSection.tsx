@@ -31,14 +31,13 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-6xl md:text-[5rem] font-serif leading-[1.05] tracking-tight animate-reveal">
-            Beyond the Scale. <br />
-            <span className="italic font-extralight text-slate-300">Targeted ABCD Intervention.</span>
+            Adiposity-Based Chronic Disease. <br />
+            <span className="italic font-extralight text-slate-300">Beyond BMI, Built for Metabolic Health.</span>
           </h1>
 
           <p className="max-w-xl text-slate-400 text-lg font-light leading-relaxed">
-            Transitioning from BMI-based metrics to a comprehensive 
-            <strong className="text-white font-medium"> pathophysiology-driven </strong> 
-            approach for adiposity-related complications.
+            A clinical model that treats <strong className="text-white font-medium">obesity as a disease</strong> and supports metabolic health assessment,
+            metabolic health checks, and clearer metabolic syndrome risk stratification.
           </p>
           
           <div className="flex items-center gap-8 group cursor-pointer w-fit pt-4">

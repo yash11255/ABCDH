@@ -8,9 +8,9 @@ import ABCDvsObesity from "./ABCDvsObesity";
 import Footer from "./Footer";
 
 export const metadata: Metadata = {
-  title: "ABCD Clinical Framework Overview",
+  title: "Adiposity-Based Chronic Disease | ABCD Health",
   description:
-    "Explore the ABCD framework for adiposity-based chronic disease, including staging, systemic complications, and evidence-based clinical guidance.",
+    "Learn why obesity is a disease through the adiposity-based chronic disease framework, including metabolic health assessment, metabolic health check pathways, and metabolic syndrome risk insights.",
   alternates: {
     canonical: "/",
   },

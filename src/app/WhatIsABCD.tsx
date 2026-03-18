@@ -47,8 +47,8 @@ export default function WhatIsABCD() {
               <span className="text-blue-600 font-bold tracking-widest text-xs uppercase">Clinical Framework</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-serif text-slate-900 leading-[1.1]">
-              A 360° Perspective on <br />
-              <span className="italic font-light text-slate-400">Adiposity Care</span>
+              What Is Adiposity-Based <br />
+              <span className="italic font-light text-slate-400">Chronic Disease?</span>
             </h2>
           </div>
           <p className="text-lg text-slate-600 font-light border-l border-slate-300 pl-6">

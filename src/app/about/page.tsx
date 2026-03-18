@@ -5,11 +5,65 @@ import Header from '../components/Header';
 import Footer from '../Footer';
 
 export const metadata = {
-  title: "About ABCD | Clinical Portal",
-  description: "Learn about the Adiposity-Based Chronic Disease (ABCD) classification system and how it's changing clinical practice.",
+  title: "Adiposity-Based Chronic Disease Framework | About ABCD",
+  description: "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
   alternates: {
     canonical: '/about',
   },
+};
+
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.abcd.health/about#webpage",
+      url: "https://www.abcd.health/about",
+      name: "Adiposity-Based Chronic Disease Framework | About ABCD",
+      description:
+        "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
+      inLanguage: "en",
+      isPartOf: {
+        "@id": "https://www.abcd.health/#website",
+      },
+      about: {
+        "@id": "https://www.abcd.health/about#medical-webpage",
+      },
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://www.abcd.health/about#medical-webpage",
+      url: "https://www.abcd.health/about",
+      name: "Adiposity Disease Framework: Understanding ABCD",
+      inLanguage: "en",
+      about: {
+        "@type": "MedicalCondition",
+        name: "Adiposity-Based Chronic Disease",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.abcd.health/about#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is adiposity-based chronic disease?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Adiposity-Based Chronic Disease (ABCD) is a clinical framework that classifies disease burden by adiposity-related complications and metabolic dysfunction, not BMI alone.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How is ABCD different from traditional obesity definitions?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "ABCD focuses on pathophysiology and complication severity across organ systems, enabling more precise diagnosis and personalized management than BMI-centric approaches.",
+          },
+        },
+      ],
+    },
+  ],
 };
 
 export default function About() {
@@ -62,6 +116,10 @@ export default function About() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
         {/* Hero Section */}
@@ -69,7 +127,7 @@ export default function About() {
           <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div className="flex-1">
               <h1 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-                Understanding ABCD
+                Adiposity Disease Framework: Understanding ABCD
               </h1>
               <p className="text-lg text-slate-300 max-w-2xl leading-relaxed">
                 Adiposity-Based Chronic Disease (ABCD) is a paradigm shift in how we classify, diagnose, and manage patients with adiposity-related health complications.
@@ -112,7 +170,7 @@ export default function About() {
               {/* What is ABCD */}
               <div id="definition" className="scroll-mt-24">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 border-b border-slate-200 pb-2 gap-4">
-                    <h2 className="text-3xl font-serif text-slate-900">What is ABCD?</h2>
+                    <h2 className="text-3xl font-serif text-slate-900">What Is Adiposity-Based Chronic Disease (ABCD)?</h2>
                     <img 
                       src="/PHOTO-2026-03-01-10-33-42.jpg" 
                       alt="ABCD Health Logo" 
@@ -161,7 +219,7 @@ export default function About() {
 
               {/* Key Principles */}
               <div id="principles" className="scroll-mt-24">
-                <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Core Principles of ABCD</h2>
+                <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">Core Principles of the Adiposity-Based Chronic Disease Framework</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {keyPrinciples.map((principle, idx) => {
                     const IconComponent = principle.icon;
