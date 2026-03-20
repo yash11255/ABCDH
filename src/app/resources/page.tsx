@@ -12,6 +12,40 @@ export const metadata = {
   },
 };
 
+const resourcesFAQSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://www.abcd.health/resources#faqpage",
+  url: "https://www.abcd.health/resources",
+  name: "Clinical Resources for ABCD Management",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What clinical resources are available for ABCD management?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Clinical resources include staging algorithms, metabolic management guidelines, cardiovascular risk assessment tools, biomechanical complication protocols, psychological support resources, and evidence-based patient education materials.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I use the ABCD staging algorithm?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The ABCD staging algorithm is a step-by-step decision tree that guides clinicians through complication assessment across metabolic, biomechanical, cardiovascular, and psychological domains to determine the appropriate ABCD stage for each patient.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What guidelines support ABCD clinical practice?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Resources include AACE/ACE statements on metabolic classification, AHA/ACC guidelines on cardiovascular risk, ADA standards of care for diabetes in ABCD, and sleep medicine guidelines for obstructive sleep apnea management.",
+      },
+    },
+  ],
+};
+
 export default function Resources() {
   const resources = [
     {
@@ -132,6 +166,10 @@ export default function Resources() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(resourcesFAQSchema) }}
+      />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
         {/* Hero Section */}

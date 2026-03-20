@@ -111,6 +111,10 @@ const generateFAQSchema = () => {
     const schema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": "https://www.abcd.health/faq#faqpage",
+        url: "https://www.abcd.health/faq",
+        name: "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
+        description: "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
         "mainEntity": faqCategories.flatMap(category =>
             category.faqs.map(faq => ({
                 "@type": "Question",
