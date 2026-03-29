@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,7 +23,8 @@ const websiteJsonLd = {
 
 export const metadata: Metadata = {
   title: "ABCD Clinical Portal | Adiposity-Based Chronic Disease",
-  description: "Comprehensive clinical framework for understanding and managing adiposity-based chronic disease with evidence-based staging system and complication-centric care approach.",
+  description:
+    "Comprehensive clinical framework for understanding and managing adiposity-based chronic disease with evidence-based staging system and complication-centric care approach.",
   metadataBase: new URL("https://www.abcd.health"),
   alternates: {
     canonical: "/",
@@ -32,33 +33,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <Head>
-        {/* Google Tag Manager */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CTM7TMD');` }} />
-        {/* End Google Tag Manager */}
+      <head>
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4EWZ4CNVWK"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4EWZ4CNVWK', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
+        {/* Schema */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
         />
-      </Head>
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5CTM7TMD"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
         {children}
       </body>
     </html>
