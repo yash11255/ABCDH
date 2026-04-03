@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube, Instagram, A
 export default function ABCDFooter() {
   return (
     <footer className="bg-slate-100 border-t border-slate-300 pt-16 pb-8 px-6 md:px-20 font-sans text-slate-800">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-350 mx-auto">
         
         {/* Top Section: Branding & Newsletter (Structured and Clinical) */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-300 pb-10 mb-10 gap-8">
@@ -64,6 +64,7 @@ export default function ABCDFooter() {
             <ul className="space-y-3 text-sm text-slate-700">
               <li><Link href="/resources" className="hover:underline hover:text-blue-700">Clinical Guidelines</Link></li>
               <li><Link href="/knowledge-base" className="hover:underline hover:text-blue-700">Knowledge Base</Link></li>
+              <li><Link href="/blog" className="hover:underline hover:text-blue-700">Blog</Link></li>
             </ul>
           </div>
 
