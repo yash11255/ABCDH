@@ -160,7 +160,16 @@ export async function fetchBlogPostsBySite(
     limit,
   });
 
-  return upstreamFetch<BlogListResponse>(url, options?.revalidate);
+  try {
+    return await upstreamFetch<BlogListResponse>(url, options?.revalidate);
+  } catch (error) {
+    return {
+      success: false,
+      data: [],
+      totalPages: 1,
+      message: error instanceof Error ? error.message : "Unable to fetch posts",
+    };
+  }
 }
 
 export async function fetchBlogPostBySlug(
@@ -172,7 +181,13 @@ export async function fetchBlogPostBySlug(
     siteId: resolveSiteId(siteId),
   });
 
-  const payload = await upstreamFetch<BlogPostResponse>(url, revalidate);
+  let payload: BlogPostResponse;
+
+  try {
+    payload = await upstreamFetch<BlogPostResponse>(url, revalidate);
+  } catch {
+    return null;
+  }
 
   if (!payload.success) {
     return null;

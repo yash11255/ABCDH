@@ -1,165 +1,225 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../Footer";
-import { processPostContent } from "@/lib/blog";
+import {
+  BLOG_REVALIDATE_SECONDS,
+  DEFAULT_SITE_ID,
+  absolutePostUrl,
+  fetchAllBlogSlugsForSite,
+  fetchBlogPostBySlug,
+  getPostAuthorName,
+  getPostImage,
+  processPostContent,
+  type BlogFaq,
+} from "@/lib/blog";
 
-type Post = {
-  title: string;
-  slug: string;
-  content: string;
-  excerpt?: string;
-  author?: string;
-  createdAt?: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  keywords?: string[];
-  featuredImage?: string;
-  image?: string;
-  imageUrl?: string;
+export const revalidate = BLOG_REVALIDATE_SECONDS;
+export const dynamic = "force-dynamic";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
 };
 
-type PostResponse = {
-  success: boolean;
-  data: Post | null;
-  message?: string;
-};
-
-function getPostImage(post: Post): string {
-  return post.featuredImage || post.imageUrl || post.image || "/PHOTO-2026-03-01-10-33-42.jpg";
+function faqSchema(faqs: BlogFaq[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 }
 
-function BlogPostLoader() {
-  return (
-    <>
-      <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-14 text-white md:px-20 md:py-16">
-        <div className="mx-auto max-w-240">
-          <div className="blog-skeleton blog-skeleton--text h-3 w-20 bg-slate-700/70" />
-          <div className="blog-skeleton mt-4 h-12 w-full max-w-3xl rounded-sm bg-slate-700/70 md:h-16" />
-          <div className="blog-skeleton mt-5 h-4 w-64 max-w-full rounded-sm bg-slate-700/70" />
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center items-center py-20 gap-3 h-72">
-        <div className="w-5 h-5 p-2 bg-blue-700 animate-bounce rounded-full overflow-hidden" style={{ animationDelay: "0ms" }}></div>
-        <div className="w-5 h-5 p-2 bg-blue-700 animate-bounce rounded-full overflow-hidden" style={{ animationDelay: "200ms" }}></div>
-        <div className="w-5 h-5 p-2 bg-blue-700 animate-bounce rounded-full overflow-hidden" style={{ animationDelay: "400ms" }}></div>
-      </div>
-    </>
-  );
+export async function generateStaticParams() {
+  const slugs = await fetchAllBlogSlugsForSite(DEFAULT_SITE_ID);
+  return slugs.map((slug) => ({ slug }));
 }
 
-const formatDate = (value?: string) => {
-  if (!value) return "";
-  return new Date(value).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate);
 
-export default function BlogPostPage() {
-  const params = useParams<{ slug: string }>();
-  const slug = typeof params?.slug === "string" ? params.slug : "";
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!slug) {
-      setError("Invalid blog slug.");
-      setLoading(false);
-      return;
-    }
-
-    const load = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(`/api/posts/${encodeURIComponent(slug)}`, { cache: "no-store" });
-        const json: PostResponse = await response.json();
-        if (!json.success || !json.data) {
-          setError(json.message || "Post not found.");
-          setPost(null);
-          return;
-        }
-
-        setPost(json.data);
-      } catch {
-        setError("Unable to load this post right now.");
-      } finally {
-        setLoading(false);
-      }
+  if (!post) {
+    return {
+      title: "Post not found",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
-
-    load();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen bg-white font-sans text-slate-800">
-          <BlogPostLoader />
-        </main>
-        <Footer />
-      </>
-    );
   }
 
-  if (!post || error) {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen bg-white px-6 py-20 text-slate-800 md:px-20">
-          <div className="mx-auto max-w-240">
-            <p className="rounded-sm border border-rose-200 bg-rose-50 p-4 text-rose-700">{error || "Post not found."}</p>
-            <Link href="/blog" className="mt-6 inline-block text-sm font-semibold text-blue-700 hover:text-blue-900">
-              Back to blog
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
+  const title = post.metaTitle || post.title;
+  const description = post.metaDescription || post.excerpt || "Clinical article";
+  const image = getPostImage(post);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/blog/${slug}`,
+      images: [{ url: image, alt: post.title }],
+      type: "article",
+      publishedTime: post.createdAt,
+      modifiedTime: post.updatedAt || post.createdAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate);
+
+  if (!post || !post.content) {
+    notFound();
   }
+
+  const processed = processPostContent(post.content);
+  const title = post.metaTitle || post.title;
+  const description = post.metaDescription || post.excerpt || "Clinical article";
+  const authorName = getPostAuthorName(post);
+  const image = getPostImage(post);
+
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    author: {
+      "@type": "Person",
+      name: authorName,
+    },
+    datePublished: post.createdAt,
+    dateModified: post.updatedAt || post.createdAt,
+    image,
+    publisher: {
+      "@type": "Organization",
+      name: DEFAULT_SITE_ID,
+      logo: {
+        "@type": "ImageObject",
+        url: "/PHOTO-2026-03-01-10-33-42.jpg",
+      },
+    },
+    mainEntityOfPage: absolutePostUrl(DEFAULT_SITE_ID, slug),
+  };
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.abcd.health",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://www.abcd.health/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://www.abcd.health/blog/${slug}`,
+      },
+    ],
+  };
+
+  const hasFaq = Array.isArray(post.faqs) && post.faqs.length > 0;
+  const faqJsonLd = hasFaq ? faqSchema(post.faqs || []) : null;
 
   return (
     <>
       <Header />
       <main className="min-h-screen bg-white font-sans text-slate-800">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+        {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
+
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-14 text-white md:px-20 md:py-16">
           <div className="mx-auto max-w-240">
             <Link href="/blog" className="text-xs uppercase tracking-wider text-slate-300 transition-colors hover:text-white">
               Back to blog
             </Link>
             <h1 className="mt-4 text-3xl font-serif leading-tight md:text-5xl">{post.title}</h1>
-            <div className="mt-4 text-sm text-slate-300">{formatDate(post.createdAt)}</div>
+            <div className="mt-4 text-sm text-slate-300">
+              {authorName} • {new Date(post.createdAt || Date.now()).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} • {processed.readingTimeMinutes} min read
+            </div>
           </div>
         </section>
 
         <article className="px-6 py-12 md:px-20">
-          <div className="mx-auto max-w-240">
-            {post.excerpt && <p className="text-lg leading-relaxed text-slate-700 mb-2">{post.excerpt}</p>}
-            <div className="relative mb-8 h-64 w-full overflow-hidden rounded-sm border border-slate-200 md:h-96">
-              <Image
-                src={getPostImage(post)}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 800px"
-                className="object-cover"
-                priority={false}
+          <div className="mx-auto grid max-w-350 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
+            <div>
+              <div className="relative mb-8 h-64 w-full overflow-hidden rounded-sm border border-slate-200 md:h-96">
+                <Image
+                  src={image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 70vw"
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              {post.excerpt && <p className="text-lg leading-relaxed text-slate-700">{post.excerpt}</p>}
+
+              <div
+                className="blog-content prose prose-slate mt-8 max-w-none prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline"
+                dangerouslySetInnerHTML={{ __html: processed.html }}
               />
+
+              {hasFaq && (
+                <section className="mt-10 border border-slate-200 bg-slate-50 p-5">
+                  <h2 className="text-xl font-serif text-slate-900">Frequently Asked Questions</h2>
+                  <div className="mt-4 space-y-4">
+                    {(post.faqs || []).map((faq) => (
+                      <div key={faq.question}>
+                        <h3 className="text-base font-semibold text-slate-900">{faq.question}</h3>
+                        <p className="mt-1 text-sm text-slate-700">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
-            <div
-              className="blog-content prose prose-slate mt-8 max-w-none"
-              dangerouslySetInnerHTML={{ __html: processPostContent(post.content || "").html }}
-            />
+
+            {processed.toc.length > 0 && (
+              <aside className="h-fit border border-slate-200 bg-slate-50 p-5 lg:sticky lg:top-24">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900">Table of Contents</h2>
+                <ul className="mt-4 space-y-2 text-sm">
+                  {processed.toc.map((item) => (
+                    <li key={item.id} className={item.level === 3 ? "ml-4" : ""}>
+                      <a href={`#${item.id}`} className="text-blue-700 hover:underline">
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            )}
           </div>
         </article>
       </main>
