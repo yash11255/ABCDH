@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../Footer";
 import {
-  BLOG_REVALIDATE_SECONDS,
   DEFAULT_SITE_ID,
   absolutePostUrl,
   fetchAllBlogSlugsForSite,
@@ -16,7 +15,7 @@ import {
   type BlogFaq,
 } from "@/lib/blog";
 
-export const revalidate = BLOG_REVALIDATE_SECONDS;
+export const revalidate = 60;
 export const dynamic = "force-dynamic";
 
 type PageProps = {
