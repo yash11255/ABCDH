@@ -6,6 +6,8 @@ import Header from "../../../components/Header";
 import Footer from "../../../Footer";
 import {
   absolutePostUrl,
+  buildBlogListPath,
+  buildBlogPostPath,
   fetchAllBlogSlugsForSite,
   fetchBlogPostBySlug,
   getConfiguredSiteIds,
@@ -30,8 +32,8 @@ function normalizeKeywords(keywords?: string[]): string[] {
 
 function breadcrumbSchema(siteId: string, slug: string, title: string) {
   const siteBase = getSiteBaseUrl(siteId);
-  const blogUrl = `${siteBase}/${siteId}/blog`;
-  const postUrl = `${siteBase}/${siteId}/blog/${slug}`;
+  const blogUrl = `${siteBase}${buildBlogListPath(siteId)}`;
+  const postUrl = `${siteBase}${buildBlogPostPath(siteId, slug)}`;
 
   return {
     "@context": "https://schema.org",
@@ -111,7 +113,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = post.metaTitle || post.title;
   const description = post.metaDescription || post.excerpt || "Clinical article";
   const image = getPostImage(post);
-  const canonicalUrl = `/${siteId}/blog/${slug}`;
+  const canonicalUrl = buildBlogPostPath(siteId, slug);
   const keywords = normalizeKeywords(post.keywords);
 
   return {
@@ -206,7 +208,7 @@ export default async function SiteBlogPostPage({ params }: PageProps) {
                 </li>
                 <li>/</li>
                 <li>
-                  <Link href={`/${siteId}/blog`} className="transition-colors hover:text-white">
+                  <Link href={buildBlogListPath(siteId)} className="transition-colors hover:text-white">
                     Blog
                   </Link>
                 </li>

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import {
+  buildBlogListPath,
+  buildBlogPostPath,
   fetchAllBlogSlugsForSite,
   getConfiguredSiteIds,
   getSiteBaseUrl,
@@ -35,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const siteBase = getSiteBaseUrl(siteId);
 
     staticEntries.push({
-      url: `${siteBase}/${siteId}/blog`,
+      url: `${siteBase}${buildBlogListPath(siteId)}`,
       lastModified: now,
       changeFrequency: "hourly",
       priority: 0.8,
@@ -53,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const slugs = await fetchAllBlogSlugsForSite(siteId);
     for (const slug of slugs) {
       staticEntries.push({
-        url: `${siteBase}/${siteId}/blog/${encodeURIComponent(slug)}`,
+        url: `${siteBase}${buildBlogPostPath(siteId, slug)}`,
         lastModified: now,
         changeFrequency: "daily",
         priority: 0.7,

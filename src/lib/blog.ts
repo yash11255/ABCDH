@@ -109,6 +109,11 @@ export function resolveSiteId(siteId?: string, host?: string | null): string {
 
 export function getSiteBaseUrl(siteId: string): string {
   const normalized = resolveSiteId(siteId);
+
+  if (normalized === DEFAULT_SITE_ID) {
+    return DEFAULT_SITE_URL;
+  }
+
   if (normalized.includes("localhost") || normalized.includes("127.0.0.1")) {
     return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   }
@@ -118,6 +123,24 @@ export function getSiteBaseUrl(siteId: string): string {
   }
 
   return `${DEFAULT_SITE_URL}/${normalized}`;
+}
+
+export function buildBlogListPath(siteId: string, page = 1): string {
+  const normalized = resolveSiteId(siteId);
+  const basePath = normalized === DEFAULT_SITE_ID ? "/blog" : `/${normalized}/blog`;
+
+  if (page > 1) {
+    return `${basePath}?page=${page}`;
+  }
+
+  return basePath;
+}
+
+export function buildBlogPostPath(siteId: string, slug: string): string {
+  const normalized = resolveSiteId(siteId);
+  const basePath = normalized === DEFAULT_SITE_ID ? "/blog" : `/${normalized}/blog`;
+
+  return `${basePath}/${encodeURIComponent(slug)}`;
 }
 
 function buildApiUrl(path: string, query?: Record<string, string | number | undefined>): string {
@@ -390,7 +413,7 @@ export function processPostContent(content: string): ProcessedContent {
 }
 
 export function absolutePostUrl(siteId: string, slug: string): string {
-  return `${getSiteBaseUrl(siteId)}/${resolveSiteId(siteId)}/blog/${encodeURIComponent(slug)}`;
+  return `${getSiteBaseUrl(siteId)}${buildBlogPostPath(siteId, slug)}`;
 }
 
 export function formatPublishedDate(value?: string): string {

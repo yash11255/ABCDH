@@ -3,6 +3,8 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../Footer";
 import {
+  buildBlogListPath,
+  buildBlogPostPath,
   fetchBlogPostsBySite,
   formatPublishedDate,
   getConfiguredSiteIds,
@@ -33,8 +35,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const query = await searchParams;
   const currentPage = toPageNumber(query.page);
   const siteId = resolveSiteId(rawSiteId);
-
-  const canonicalPath = currentPage > 1 ? `/${siteId}/blog?page=${currentPage}` : `/${siteId}/blog`;
+  const canonicalPath = buildBlogListPath(siteId, currentPage);
 
   return {
     title: currentPage > 1 ? `Blog - Page ${currentPage} | ${siteId}` : `Blog | ${siteId}`,
@@ -63,8 +64,8 @@ export default async function SiteBlogPage({ params, searchParams }: PageProps) 
 
   const posts = result.success ? result.data : [];
   const totalPages = Math.max(1, result.totalPages || 1);
-  const previousPageHref = currentPage > 1 ? `/${siteId}/blog${currentPage > 2 ? `?page=${currentPage - 1}` : ""}` : null;
-  const nextPageHref = currentPage < totalPages ? `/${siteId}/blog?page=${currentPage + 1}` : null;
+  const previousPageHref = currentPage > 1 ? buildBlogListPath(siteId, currentPage - 1) : null;
+  const nextPageHref = currentPage < totalPages ? buildBlogListPath(siteId, currentPage + 1) : null;
 
   return (
     <>
@@ -101,7 +102,7 @@ export default async function SiteBlogPage({ params, searchParams }: PageProps) 
                   <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
                     <span className="text-xs uppercase tracking-wide text-slate-500">{getPostAuthorName(post)}</span>
                     <Link
-                      href={`/${siteId}/blog/${post.slug}`}
+                      href={buildBlogPostPath(siteId, post.slug)}
                       className="text-sm font-semibold text-blue-700 transition-colors group-hover:text-blue-900"
                     >
                       Read article
