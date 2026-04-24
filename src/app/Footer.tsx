@@ -80,6 +80,18 @@ export default function ABCDFooter() {
 
           {/* Column 4 */}
           <div>
+            <h3 className="font-bold text-slate-900 text-sm mb-4">ABCD Topic Pages</h3>
+            <ul className="space-y-3 text-sm text-slate-700">
+              <li><Link href="/adiposity-based-chronic-disease" className="hover:underline hover:text-blue-700">ABCD Pillar Page</Link></li>
+              <li><Link href="/what-is-adiposity-based-chronic-disease" className="hover:underline hover:text-blue-700">What Is ABCD?</Link></li>
+              <li><Link href="/abcd-staging-system" className="hover:underline hover:text-blue-700">ABCD Staging System</Link></li>
+              <li><Link href="/adiposity-based-chronic-disease-treatment" className="hover:underline hover:text-blue-700">ABCD Treatment</Link></li>
+              <li><Link href="/obesity-vs-adiposity-based-chronic-disease" className="hover:underline hover:text-blue-700">Obesity vs ABCD</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 5 */}
+          <div>
             <h3 className="font-bold text-slate-900 text-sm mb-4">International Network</h3>
             <ul className="space-y-3 text-sm text-slate-700">
               <li>Global Care Coordination</li>
@@ -89,7 +101,7 @@ export default function ABCDFooter() {
             </ul>
           </div>
 
-          {/* Column 5 - Contact Info structured differently from links */}
+          {/* Column 6 - Contact Info structured differently from links */}
           <div>
             <h3 className="font-bold text-slate-900 text-sm mb-4">Clinical Contact</h3>
             <div className="space-y-4 text-sm text-slate-700">

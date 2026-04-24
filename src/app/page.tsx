@@ -77,6 +77,37 @@ export default function Home() {
       <HeroSection />
       <WhatIsABCD />
       <ABCDvsObesity />
+
+      <section className="bg-white px-6 py-14 md:px-20">
+        <div className="mx-auto max-w-350 border border-slate-200 bg-slate-50 p-6 md:p-8">
+          <h2 className="text-2xl font-serif text-slate-900 md:text-3xl">ABCD Topic Hub</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-700 md:text-base">
+            Explore key guides on adiposity-based chronic disease, staging, symptoms, treatment, prevention, and cardiometabolic risk.
+          </p>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            <a href="/adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              Adiposity-Based Chronic Disease (Pillar)
+            </a>
+            <a href="/what-is-adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              What Is ABCD?
+            </a>
+            <a href="/abcd-staging-system" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              ABCD Staging System
+            </a>
+            <a href="/adiposity-based-chronic-disease-symptoms" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              ABCD Symptoms
+            </a>
+            <a href="/adiposity-based-chronic-disease-treatment" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              ABCD Treatment
+            </a>
+            <a href="/cardiometabolic-disease-and-abcd" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              Cardiometabolic Disease and ABCD
+            </a>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );

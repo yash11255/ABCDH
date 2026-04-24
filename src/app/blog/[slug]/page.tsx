@@ -14,6 +14,7 @@ import {
   processPostContent,
   type BlogFaq,
 } from "@/lib/blog";
+import { getRequiredSeoBlogPost, getRequiredSeoBlogSlugs } from "@/lib/seo-blog-content";
 
 export const revalidate = 60;
 export const dynamic = "force-dynamic";
@@ -38,13 +39,15 @@ function faqSchema(faqs: BlogFaq[]) {
 }
 
 export async function generateStaticParams() {
-  const slugs = await fetchAllBlogSlugsForSite(DEFAULT_SITE_ID);
-  return slugs.map((slug) => ({ slug }));
+  const dynamicSlugs = await fetchAllBlogSlugsForSite(DEFAULT_SITE_ID);
+  const staticSlugs = getRequiredSeoBlogSlugs();
+  const merged = Array.from(new Set([...dynamicSlugs, ...staticSlugs]));
+  return merged.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate);
+  const post = (await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate)) || getRequiredSeoBlogPost(slug);
 
   if (!post) {
     return {
@@ -86,7 +89,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate);
+  const post = (await fetchBlogPostBySlug(DEFAULT_SITE_ID, slug, revalidate)) || getRequiredSeoBlogPost(slug);
 
   if (!post || !post.content) {
     notFound();

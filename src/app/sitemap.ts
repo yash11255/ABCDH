@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 import {
+  DEFAULT_SITE_ID,
   buildBlogListPath,
   buildBlogPostPath,
   fetchAllBlogSlugsForSite,
   getConfiguredSiteIds,
   getSiteBaseUrl,
 } from "@/lib/blog";
+import { getRequiredSeoBlogSlugs } from "@/lib/seo-blog-content";
+import { getSeoTopicSlugs } from "@/lib/seo-content";
 
 export const revalidate = 60;
 
@@ -31,7 +34,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/knowledge-base",
     "/blog",
+    ...getSeoTopicSlugs().map((slug) => `/${slug}`),
   ];
+
+  const requiredLocalBlogSlugs = getRequiredSeoBlogSlugs();
 
   for (const siteId of siteIds) {
     const siteBase = getSiteBaseUrl(siteId);
@@ -53,7 +59,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const slugs = await fetchAllBlogSlugsForSite(siteId);
-    for (const slug of slugs) {
+    const mergedBlogSlugs =
+      siteId === DEFAULT_SITE_ID
+        ? Array.from(new Set([...slugs, ...requiredLocalBlogSlugs]))
+        : slugs;
+
+    for (const slug of mergedBlogSlugs) {
       staticEntries.push({
         url: `${siteBase}${buildBlogPostPath(siteId, slug)}`,
         lastModified: now,
