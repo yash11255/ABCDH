@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../Footer";
-import { REQUIRED_SEO_BLOG_POSTS } from "@/lib/seo-blog-content";
 
 type Post = {
   _id?: string;
@@ -108,7 +107,7 @@ export default function BlogPage() {
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {Array.from(
                   new Map(
-                    [...REQUIRED_SEO_BLOG_POSTS, ...posts].map((post) => [post.slug, post]),
+                    [...posts].map((post) => [post.slug, post]),
                   ).values(),
                 ).map((post) => (
                   <article
