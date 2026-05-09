@@ -144,10 +144,7 @@ export default async function SeoTopicPage({ params }: PageProps) {
               <section className="mt-12 border border-slate-200 bg-white p-5">
                 <h2 className="text-xl font-serif text-slate-900">Clinical Trust and Review</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                  Author: Dr. [Name Placeholder], MD, Endocrinology
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                  Medically reviewed by: Dr. [Reviewer Placeholder], MD
+                  Author: Dr. Ashish Kalla, MBBS, DNB (General Medicine)
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-700">Last updated: {LAST_UPDATED}</p>
               </section>
