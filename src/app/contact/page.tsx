@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Clock, Search, ChevronRight } from 'lucide-react';
+import { Instagram, Mail, Phone, MapPin, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
 
 export const metadata = {
   title: "Contact Us | Clinical Portal",
-  description: "Get in touch with the ABCD Clinical Portal for support, inquiries, and clinical questions.",
+  description: "Get in touch with ABCD Health for support, inquiries, and clinical questions.",
   alternates: {
     canonical: '/contact',
   },
@@ -17,44 +17,44 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+1 (310) 423-3277", "Available 24/7"]
+      details: ["+91 81309 06807", "Mon-Sat, 9 AM - 6 PM"]
     },
     {
       icon: Mail,
-      title: "Email Support",
-      details: ["contact@abcd-portal.com", "support@abcd-portal.com"]
+      title: "Email",
+      details: ["hr@imedi.health", "support@imedi.health", "Response within 24 hours"]
     },
     {
       icon: MapPin,
-      title: "Main Office",
-      details: ["8700 Beverly Blvd", "Los Angeles, CA 90048"]
+      title: "Location",
+      details: ["Two Horizon Centre, Level 6", "Golf Course Road, Gurugram", "Haryana 122002"]
     },
     {
-      icon: Clock,
-      title: "Operating Hours",
-      details: ["Mon-Fri: 8 AM - 6 PM PT", "Sat: 10 AM - 2 PM PT"]
+      icon: Instagram,
+      title: "Instagram",
+      details: ["@imedi.health", "Follow for updates and wellness insights"]
     }
   ];
 
   const departments = [
     {
       name: "Clinical Inquiries",
-      email: "clinical@abcd-portal.com",
+      email: "support@imedi.health",
       description: "Questions about ABCD staging, management, and clinical implementation."
     },
     {
       name: "Patient Portal Support",
-      email: "patients@abcd-portal.com",
+      email: "support@imedi.health",
       description: "Account issues, portal access, and patient resources."
     },
     {
-      name: "Training & Certification",
-      email: "training@abcd-portal.com",
-      description: "Educational programs, courses, and certification inquiries."
+      name: "Careers & HR",
+      email: "hr@imedi.health",
+      description: "Hiring, careers, HR, and team-related inquiries."
     },
     {
       name: "Partnership & Integration",
-      email: "partnerships@abcd-portal.com",
+      email: "support@imedi.health",
       description: "EHR integration, health system partnerships, and collaborations."
     }
   ];
@@ -139,6 +139,7 @@ export default function Contact() {
                     <label className="block text-sm font-bold text-slate-900 mb-2">Phone Number</label>
                     <input
                       type="tel"
+                      placeholder="+91 81309 06807"
                       className="w-full px-4 py-2 border border-slate-300 rounded-sm focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700"
                     />
                   </div>
@@ -150,7 +151,7 @@ export default function Contact() {
                     <option value="">Select a subject...</option>
                     <option value="clinical">Clinical Question</option>
                     <option value="support">Patient Support</option>
-                    <option value="training">Training & Education</option>
+                    <option value="careers">Careers & HR</option>
                     <option value="technical">Technical Support</option>
                     <option value="partnership">Partnership Inquiry</option>
                     <option value="other">Other</option>
@@ -187,10 +188,10 @@ export default function Contact() {
                   <Phone size={20} className="text-blue-700" /> Need Immediate Support?
                 </h3>
                 <p className="text-slate-700 text-sm leading-relaxed mb-4">
-                  For urgent clinical questions or immediate technical issues, please call our 24/7 support line.
+                  For urgent clinical questions or immediate technical issues, please call during business hours.
                 </p>
-                <a href="tel:+13104233277" className="text-blue-700 font-bold hover:underline text-lg">
-                  +1 (310) 423-3277
+                <a href="tel:+918130906807" className="text-blue-700 font-bold hover:underline text-lg">
+                  +91 81309 06807
                 </a>
               </div>
 
@@ -243,7 +244,7 @@ export default function Contact() {
                   Do you offer training programs?
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed pl-6">
-                  Yes, we offer CME-accredited training on ABCD fundamentals. Contact <a href="mailto:training@abcd-portal.com" className="text-blue-700 hover:underline">training@abcd-portal.com</a> for schedules.
+                  Yes. Contact <a href="mailto:support@imedi.health" className="text-blue-700 hover:underline">support@imedi.health</a> for training and education inquiries.
                 </p>
               </div>
               <div>
@@ -252,7 +253,7 @@ export default function Contact() {
                   How can my organization partner with ABCD?
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed pl-6">
-                  We frequently collaborate with health systems for EHR integration. Reach out to <a href="mailto:partnerships@abcd-portal.com" className="text-blue-700 hover:underline">partnerships@abcd-portal.com</a>.
+                  We frequently collaborate with health systems for EHR integration. Reach out to <a href="mailto:support@imedi.health" className="text-blue-700 hover:underline">support@imedi.health</a>.
                 </p>
               </div>
             </div>
