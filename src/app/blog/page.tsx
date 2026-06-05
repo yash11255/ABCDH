@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../Footer";
+import { collectionPageGraph, jsonLd } from "@/lib/schema";
+import { REQUIRED_SEO_BLOG_POSTS } from "@/lib/seo-blog-content";
 
 type Post = {
   _id?: string;
@@ -22,6 +24,20 @@ type PostListResponse = {
   totalPages?: number;
   message?: string;
 };
+
+const blogListSchema = collectionPageGraph({
+  path: "/blog",
+  name: "ABCD Health Blog",
+  description:
+    "Evidence-based insights on adiposity-based chronic disease, clinical pathways, and long-term cardiometabolic outcomes.",
+  breadcrumbs: [{ name: "Blog", path: "/blog" }],
+  type: "Blog",
+  items: REQUIRED_SEO_BLOG_POSTS.map((post) => ({
+    name: post.title,
+    description: post.excerpt || post.metaDescription,
+    url: `/blog/${post.slug}`,
+  })),
+});
 
 const formatDate = (value?: string) => {
   if (!value) return "";
@@ -81,6 +97,10 @@ export default function BlogPage() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(blogListSchema) }}
+      />
       <main className="min-h-screen bg-white font-sans text-slate-800">
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-16 text-white md:px-20 md:py-20">
           <div className="mx-auto max-w-350">

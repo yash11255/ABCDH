@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CheckCircle2, AlertCircle, TrendingUp, Microscope, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
+import { jsonLd, medicalPageGraph } from '@/lib/schema';
 
 export const metadata = {
   title: "Adiposity-Based Chronic Disease Framework | About ABCD",
@@ -12,59 +13,28 @@ export const metadata = {
   },
 };
 
-const aboutJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.abcd.health/about#webpage",
-      url: "https://www.abcd.health/about",
-      name: "Adiposity-Based Chronic Disease Framework | About ABCD",
-      description:
-        "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
-      inLanguage: "en",
-      isPartOf: {
-        "@id": "https://www.abcd.health/#website",
-      },
-      about: {
-        "@id": "https://www.abcd.health/about#medical-webpage",
-      },
-    },
-    {
-      "@type": "MedicalWebPage",
-      "@id": "https://www.abcd.health/about#medical-webpage",
-      url: "https://www.abcd.health/about",
-      name: "Adiposity Disease Framework: Understanding ABCD",
-      inLanguage: "en",
-      about: {
-        "@type": "MedicalCondition",
-        name: "Adiposity-Based Chronic Disease",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.abcd.health/about#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What is adiposity-based chronic disease?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Adiposity-Based Chronic Disease (ABCD) is a clinical framework that classifies disease burden by adiposity-related complications and metabolic dysfunction, not BMI alone.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How is ABCD different from traditional obesity definitions?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "ABCD focuses on pathophysiology and complication severity across organ systems, enabling more precise diagnosis and personalized management than BMI-centric approaches.",
-          },
-        },
-      ],
-    },
-  ],
-};
+const aboutFaqs = [
+  {
+    question: "What is adiposity-based chronic disease?",
+    answer:
+      "Adiposity-Based Chronic Disease (ABCD) is a clinical framework that classifies disease burden by adiposity-related complications and metabolic dysfunction, not BMI alone.",
+  },
+  {
+    question: "How is ABCD different from traditional obesity definitions?",
+    answer:
+      "ABCD focuses on pathophysiology and complication severity across organ systems, enabling more precise diagnosis and personalized management than BMI-centric approaches.",
+  },
+];
+
+const aboutJsonLd = medicalPageGraph({
+  path: "/about",
+  name: "Adiposity-Based Chronic Disease Framework | About ABCD",
+  description:
+    "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
+  faqs: aboutFaqs,
+  breadcrumbs: [{ name: "About ABCD", path: "/about" }],
+  mainContentOfPage: ["Definition", "Core principles", "Why ABCD matters", "The four stages", "Systemic impact"],
+});
 
 export default function About() {
   const keyPrinciples = [
@@ -118,7 +88,7 @@ export default function About() {
       <Header />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(aboutJsonLd) }}
       />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
@@ -352,6 +322,22 @@ export default function About() {
                 <h3 className="text-lg font-bold text-blue-700 group-hover:underline mb-2">Knowledge Base</h3>
                 <p className="text-slate-600 text-sm">Comprehensive clinical resources, guidelines, and technical documentation.</p>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-6 md:px-20 bg-white border-t border-slate-200">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-2xl font-serif text-slate-900 mb-8 pb-2 border-b border-slate-200">
+              ABCD Framework Questions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {aboutFaqs.map((faq) => (
+                <article key={faq.question} className="border border-slate-200 bg-slate-50 p-5 rounded-sm">
+                  <h3 className="font-bold text-slate-900 mb-3">{faq.question}</h3>
+                  <p className="text-sm leading-relaxed text-slate-700">{faq.answer}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

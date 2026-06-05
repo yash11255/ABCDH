@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Download, ExternalLink, BookOpen, FileText, Calculator, Users, Search, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
+import { collectionPageGraph, faqPageNode, jsonLd } from '@/lib/schema';
 
 export const metadata = {
   title: "Clinical Resources | Clinical Portal",
@@ -12,39 +13,41 @@ export const metadata = {
   },
 };
 
-const resourcesFAQSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://www.abcd.health/resources#faqpage",
-  url: "https://www.abcd.health/resources",
-  name: "Clinical Resources for ABCD Management",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What clinical resources are available for ABCD management?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Clinical resources include staging algorithms, metabolic management guidelines, cardiovascular risk assessment tools, biomechanical complication protocols, psychological support resources, and evidence-based patient education materials.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How do I use the ABCD staging algorithm?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The ABCD staging algorithm is a step-by-step decision tree that guides clinicians through complication assessment across metabolic, biomechanical, cardiovascular, and psychological domains to determine the appropriate ABCD stage for each patient.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What guidelines support ABCD clinical practice?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Resources include AACE/ACE statements on metabolic classification, AHA/ACC guidelines on cardiovascular risk, ADA standards of care for diabetes in ABCD, and sleep medicine guidelines for obstructive sleep apnea management.",
-      },
-    },
-  ],
-};
+const resourcesFaqs = [
+  {
+    question: "What clinical resources are available for ABCD management?",
+    answer:
+      "Clinical resources include staging algorithms, metabolic management guidelines, cardiovascular risk assessment tools, biomechanical complication protocols, psychological support resources, and evidence-based patient education materials.",
+  },
+  {
+    question: "How do I use the ABCD staging algorithm?",
+    answer:
+      "The ABCD staging algorithm is a step-by-step decision tree that guides clinicians through complication assessment across metabolic, biomechanical, cardiovascular, and psychological domains to determine the appropriate ABCD stage for each patient.",
+  },
+  {
+    question: "What guidelines support ABCD clinical practice?",
+    answer:
+      "Resources include AACE/ACE statements on metabolic classification, AHA/ACC guidelines on cardiovascular risk, ADA standards of care for diabetes in ABCD, and sleep medicine guidelines for obstructive sleep apnea management.",
+  },
+];
+
+const resourcesSchemaItems = [
+  { name: "ABCD Staging Algorithm", description: "Step-by-step decision tree for classifying patients into ABCD stages based on complications." },
+  { name: "Metabolic Complications Management", description: "Evidence-based guidelines for managing Type 2 Diabetes, dyslipidemia, and NASH in ABCD patients." },
+  { name: "Cardiovascular Risk Assessment", description: "Comprehensive cardiovascular risk stratification protocol for ABCD patients." },
+  { name: "Biomechanical Complications Protocol", description: "Management strategies for sleep apnea, osteoarthritis, and GERD in adiposity-related disease." },
+  { name: "Psychological Support Resources", description: "Mental health screening tools, referral pathways, and integrated care approaches." },
+  { name: "Patient Education Materials", description: "Handouts and resources for patient education on ABCD stages and management." },
+];
+
+const resourcesSchema = collectionPageGraph({
+  path: "/resources",
+  name: "Clinical Resources",
+  description:
+    "Tools, guidelines, and resources for clinical management of ABCD-related complications.",
+  breadcrumbs: [{ name: "Resources", path: "/resources" }],
+  items: resourcesSchemaItems,
+});
 
 export default function Resources() {
   const resources = [
@@ -168,7 +171,13 @@ export default function Resources() {
       <Header />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(resourcesFAQSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(resourcesSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(faqPageNode("/resources", "Clinical Resources for ABCD Management", resourcesFaqs)),
+        }}
       />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
@@ -348,6 +357,22 @@ export default function Resources() {
               </div>
 
             </main>
+          </div>
+        </section>
+
+        <section className="py-16 px-6 md:px-20 bg-white border-t border-slate-200">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-2xl font-serif text-slate-900 mb-8 pb-2 border-b border-slate-200">
+              Resource Questions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {resourcesFaqs.map((faq) => (
+                <article key={faq.question} className="border border-slate-200 bg-slate-50 p-5 rounded-sm">
+                  <h3 className="font-bold text-slate-900 mb-3">{faq.question}</h3>
+                  <p className="text-sm leading-relaxed text-slate-700">{faq.answer}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

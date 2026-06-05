@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Instagram, Mail, Phone, MapPin, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
+import { contactPageGraph, jsonLd } from '@/lib/schema';
 
 export const metadata = {
   title: "Contact Us | Clinical Portal",
@@ -62,6 +63,10 @@ export default function Contact() {
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(contactPageGraph()) }}
+      />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
         {/* Hero Section */}

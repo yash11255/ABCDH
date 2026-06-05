@@ -4,6 +4,7 @@ import { Search, ChevronRight, Activity, Wind, HeartPulse, BrainCircuit } from '
 import Header from '../components/Header';
 import Footer from '../Footer';
 import SystemicImpactSection from '../SystemicImpactSection';
+import { jsonLd, medicalPageGraph } from '@/lib/schema';
 
 export const metadata = {
   title: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
@@ -13,69 +14,28 @@ export const metadata = {
   },
 };
 
-const complicationsJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.abcd.health/complications#webpage",
-      url: "https://www.abcd.health/complications",
-      name: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
-      description:
-        "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
-      inLanguage: "en",
-      isPartOf: {
-        "@id": "https://www.abcd.health/#website",
-      },
-      about: {
-        "@id": "https://www.abcd.health/complications#medical-webpage",
-      },
-    },
-    {
-      "@type": "MedicalWebPage",
-      "@id": "https://www.abcd.health/complications#medical-webpage",
-      url: "https://www.abcd.health/complications",
-      name: "Obesity Complications Beyond the Scale",
-      inLanguage: "en",
-      about: [
-        {
-          "@type": "MedicalCondition",
-          name: "Obesity complications",
-        },
-        {
-          "@type": "MedicalCondition",
-          name: "Insulin resistance",
-        },
-        {
-          "@type": "MedicalCondition",
-          name: "Metabolic syndrome",
-        },
-      ],
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.abcd.health/complications#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What are common obesity complications?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Common obesity complications include insulin resistance, type 2 diabetes, dyslipidemia, sleep apnea, hypertension, cardiovascular disease, and psychosocial complications across multiple domains.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How does visceral fat increase health risk?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Visceral fat contributes to adipose tissue dysfunction, chronic inflammation, and cardiometabolic risk, increasing the likelihood of metabolic syndrome and obesity-related disease progression.",
-          },
-        },
-      ],
-    },
-  ],
-};
+const complicationsFaqs = [
+  {
+    question: "What are common obesity complications?",
+    answer:
+      "Common obesity complications include insulin resistance, type 2 diabetes, dyslipidemia, sleep apnea, hypertension, cardiovascular disease, and psychosocial complications across multiple domains.",
+  },
+  {
+    question: "How does visceral fat increase health risk?",
+    answer:
+      "Visceral fat contributes to adipose tissue dysfunction, chronic inflammation, and cardiometabolic risk, increasing the likelihood of metabolic syndrome and obesity-related disease progression.",
+  },
+];
+
+const complicationsJsonLd = medicalPageGraph({
+  path: "/complications",
+  name: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
+  description:
+    "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
+  faqs: complicationsFaqs,
+  breadcrumbs: [{ name: "Complications", path: "/complications" }],
+  mainContentOfPage: ["Metabolic complications", "Biomechanical complications", "Cardiovascular complications", "Psychological complications"],
+});
 
 export default function Complications() {
   const complications = [
@@ -142,7 +102,7 @@ export default function Complications() {
       <Header />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(complicationsJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(complicationsJsonLd) }}
       />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
@@ -329,6 +289,22 @@ export default function Complications() {
                 <h3 className="text-lg font-bold text-blue-700 group-hover:underline mb-2">Clinical Resources</h3>
                 <p className="text-slate-600 text-sm">Guidelines and tools for managing ABCD complications.</p>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-6 md:px-20 bg-white border-t border-slate-200">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-2xl font-serif text-slate-900 mb-8 pb-2 border-b border-slate-200">
+              Complication Questions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {complicationsFaqs.map((faq) => (
+                <article key={faq.question} className="border border-slate-200 bg-slate-50 p-5 rounded-sm">
+                  <h3 className="font-bold text-slate-900 mb-3">{faq.question}</h3>
+                  <p className="text-sm leading-relaxed text-slate-700">{faq.answer}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

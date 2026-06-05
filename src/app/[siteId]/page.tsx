@@ -3,17 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../Footer";
-import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import FaqAccordion from "@/components/seo/FaqAccordion";
-import FaqJsonLd from "@/components/seo/FaqJsonLd";
 import {
   ABCD_PILLAR_SLUG,
   getSeoTopicBySlug,
   getSeoTopicSlugs,
   SEO_TOPIC_PAGES,
 } from "@/lib/seo-content";
-import { buildSeoMetadata, getAbsoluteUrl } from "@/lib/seo";
+import { buildSeoMetadata } from "@/lib/seo";
 import { getConfiguredSiteIds } from "@/lib/blog";
+import { jsonLd, seoTopicGraph } from "@/lib/schema";
 
 type PageProps = {
   params: Promise<{ siteId: string }>;
@@ -88,7 +87,6 @@ export default async function SeoTopicPage({ params }: PageProps) {
     { id: "faq", label: "FAQ" },
   ];
 
-  const canonicalUrl = getAbsoluteUrl(`/${page.slug}`);
   const pillarPath = `/${ABCD_PILLAR_SLUG}`;
   const shouldShowPillar = page.slug !== ABCD_PILLAR_SLUG;
 
@@ -96,13 +94,20 @@ export default async function SeoTopicPage({ params }: PageProps) {
     <>
       <Header />
       <main className="min-h-screen bg-white font-sans text-slate-800">
-        <ArticleJsonLd
-          title={page.seoTitle}
-          description={page.metaDescription}
-          url={canonicalUrl}
-          dateModified={LAST_UPDATED}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd(
+              seoTopicGraph({
+                path: `/${page.slug}`,
+                title: page.seoTitle,
+                description: page.metaDescription,
+                faqs: page.faqs,
+                dateModified: LAST_UPDATED,
+              }),
+            ),
+          }}
         />
-        <FaqJsonLd faqs={page.faqs} />
 
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-14 text-white md:px-20 md:py-16">
           <div className="mx-auto max-w-350">
@@ -144,11 +149,9 @@ export default async function SeoTopicPage({ params }: PageProps) {
               <section className="mt-12 border border-slate-200 bg-white p-5">
                 <h2 className="text-xl font-serif text-slate-900">Clinical Trust and Review</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                  Author: Dr. [Name Placeholder], MD, Endocrinology
+                  Author and publisher: ABCD Health Editorial Team
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                  Medically reviewed by: Dr. [Reviewer Placeholder], MD
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">Reviewed by: ABCD Health</p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-700">Last updated: {LAST_UPDATED}</p>
               </section>
 

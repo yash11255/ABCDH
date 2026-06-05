@@ -10,6 +10,7 @@ import {
   Ban,
   ScrollText
 } from 'lucide-react';
+import { jsonLd, simpleWebPageGraph } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | ABCD Clinical Portal',
@@ -63,6 +64,19 @@ export default function TermsAndConditionsPage() {
   return (
     
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            simpleWebPageGraph(
+              "/terms-and-conditions",
+              "Terms & Conditions | ABCD Clinical Portal",
+              "Review the ABCD Clinical Portal terms and conditions, including site usage, responsibilities, and legal notices.",
+              [{ name: "Terms & Conditions", path: "/terms-and-conditions" }],
+            ),
+          ),
+        }}
+      />
       {/* Header */}
       <header className="py-20 px-4 border-b border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50">
         <div className="max-w-4xl mx-auto text-center">

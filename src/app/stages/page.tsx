@@ -4,6 +4,7 @@ import { AlertCircle, TrendingUp, Heart, Shield, Search, ChevronRight } from 'lu
 import Header from '../components/Header';
 import Footer from '../Footer';
 import ABCDStages from '../ABCDStages';
+import { jsonLd, medicalPageGraph } from '@/lib/schema';
 
 export const metadata = {
   title: "Obesity Staging Model | ABCD Stage Classification",
@@ -13,59 +14,28 @@ export const metadata = {
   },
 };
 
-const stagesJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.abcd.health/stages#webpage",
-      url: "https://www.abcd.health/stages",
-      name: "Obesity Staging Model | ABCD Stage Classification",
-      description:
-        "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
-      inLanguage: "en",
-      isPartOf: {
-        "@id": "https://www.abcd.health/#website",
-      },
-      about: {
-        "@id": "https://www.abcd.health/stages#medical-webpage",
-      },
-    },
-    {
-      "@type": "MedicalWebPage",
-      "@id": "https://www.abcd.health/stages#medical-webpage",
-      url: "https://www.abcd.health/stages",
-      name: "Obesity Staging Model: The Four Stages of ABCD",
-      inLanguage: "en",
-      about: {
-        "@type": "MedicalCondition",
-        name: "Adiposity-Based Chronic Disease",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.abcd.health/stages#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What are the four stages of adiposity-based chronic disease?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "The ABCD model includes Stage 1 At Risk, Stage 2 Mild or Moderate, Stage 3 Established disease, and Stage 4 Advanced disease, each defined by complication burden and clinical severity.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Why is obesity stage classification important?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Stage classification helps clinicians match treatment intensity to metabolic and organ-system risk, improving prevention, active management, and long-term outcomes.",
-          },
-        },
-      ],
-    },
-  ],
-};
+const stagesFaqs = [
+  {
+    question: "What are the four stages of adiposity-based chronic disease?",
+    answer:
+      "The ABCD model includes Stage 1 At Risk, Stage 2 Mild or Moderate, Stage 3 Established disease, and Stage 4 Advanced disease, each defined by complication burden and clinical severity.",
+  },
+  {
+    question: "Why is obesity stage classification important?",
+    answer:
+      "Stage classification helps clinicians match treatment intensity to metabolic and organ-system risk, improving prevention, active management, and long-term outcomes.",
+  },
+];
+
+const stagesJsonLd = medicalPageGraph({
+  path: "/stages",
+  name: "Obesity Staging Model | ABCD Stage Classification",
+  description:
+    "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
+  faqs: stagesFaqs,
+  breadcrumbs: [{ name: "ABCD Stages", path: "/stages" }],
+  mainContentOfPage: ["Stage 1", "Stage 2", "Stage 3", "Stage 4", "Clinical markers", "Interventions"],
+});
 
 const StagesDetails = () => {
   const stages = [
@@ -144,7 +114,7 @@ const StagesDetails = () => {
       <Header />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(stagesJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(stagesJsonLd) }}
       />
       <div className="min-h-screen bg-white font-sans text-slate-800">
 
@@ -321,6 +291,22 @@ const StagesDetails = () => {
                 <h3 className="text-lg font-bold text-blue-700 group-hover:underline mb-2">Clinical Resources</h3>
                 <p className="text-slate-600">Guidelines, tools, and resources for clinical management of ABCD.</p>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 px-6 md:px-20 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-[1400px] mx-auto">
+            <h2 className="text-2xl font-serif text-slate-900 mb-8 pb-2 border-b border-slate-200">
+              Staging Questions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {stagesFaqs.map((faq) => (
+                <article key={faq.question} className="border border-slate-200 bg-white p-5 rounded-sm">
+                  <h3 className="font-bold text-slate-900 mb-3">{faq.question}</h3>
+                  <p className="text-sm leading-relaxed text-slate-700">{faq.answer}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

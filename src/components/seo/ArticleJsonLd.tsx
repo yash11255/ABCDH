@@ -1,3 +1,5 @@
+import { absoluteUrl, SCHEMA_IDS, jsonLd } from "@/lib/schema";
+
 type ArticleJsonLdProps = {
   title: string;
   description: string;
@@ -20,19 +22,13 @@ export default function ArticleJsonLd({
     datePublished: dateModified,
     dateModified,
     author: {
-      "@type": "Person",
-      name: "Dr. [Name Placeholder]",
-      jobTitle: "MD, Endocrinology",
+      "@id": SCHEMA_IDS.organization,
     },
     publisher: {
-      "@type": "Organization",
-      name: "ABCD Health",
-      logo: {
-        "@type": "ImageObject",
-        url: "/PHOTO-2026-03-01-10-33-42.jpg",
-      },
+      "@id": SCHEMA_IDS.organization,
     },
+    image: absoluteUrl("/PHOTO-2026-03-01-10-33-42.jpg"),
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(payload) }} />;
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(payload) }} />;
 }

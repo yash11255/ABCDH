@@ -11,6 +11,7 @@ import {
   getPostAuthorName,
   resolveSiteId,
 } from "@/lib/blog";
+import { collectionPageGraph, jsonLd } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -66,10 +67,24 @@ export default async function SiteBlogPage({ params, searchParams }: PageProps) 
   const totalPages = Math.max(1, result.totalPages || 1);
   const previousPageHref = currentPage > 1 ? buildBlogListPath(siteId, currentPage - 1) : null;
   const nextPageHref = currentPage < totalPages ? buildBlogListPath(siteId, currentPage + 1) : null;
+  const blogPath = buildBlogListPath(siteId);
+  const schema = collectionPageGraph({
+    path: blogPath,
+    name: `${siteId} Blog`,
+    description: `Clinical and evidence-based blog articles for ${siteId}.`,
+    breadcrumbs: [{ name: "Blog", path: blogPath }],
+    type: "Blog",
+    items: posts.map((post) => ({
+      name: post.title,
+      description: post.excerpt || post.metaDescription,
+      url: buildBlogPostPath(siteId, post.slug),
+    })),
+  });
 
   return (
     <>
       <Header />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
       <main className="min-h-screen bg-white font-sans text-slate-800">
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-16 text-white md:px-20 md:py-20">
           <div className="mx-auto max-w-350">

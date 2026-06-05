@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { globalSchemaGraph, jsonLd } from "@/lib/schema";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,14 +13,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "ABCD Clinical Portal",
-  alternateName: "ABCD Health",
-  url: "https://www.abcd.health",
-};
 
 export const metadata: Metadata = {
   title: "ABCD Clinical Portal | Adiposity-Based Chronic Disease",
@@ -59,7 +52,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteJsonLd),
+            __html: jsonLd(globalSchemaGraph()),
           }}
         />
       </head>

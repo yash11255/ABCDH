@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Search, ChevronDown, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
+import { jsonLd, simpleWebPageGraph } from '@/lib/schema';
 
 // 1. Enhanced SEO Metadata
 export const metadata = {
@@ -108,7 +109,7 @@ const faqCategories = [
 
 // 3. Schema Generator for Google Rich Snippets
 const generateFAQSchema = () => {
-    const schema = {
+    return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "@id": "https://www.abcd.health/faq#faqpage",
@@ -126,7 +127,6 @@ const generateFAQSchema = () => {
             }))
         )
     };
-    return JSON.stringify(schema);
 };
 
 // 4. Clinical FAQ Component
@@ -152,7 +152,20 @@ export default function FAQ() {
             {/* Injecting JSON-LD for SEO */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: generateFAQSchema() }}
+                dangerouslySetInnerHTML={{ __html: jsonLd(generateFAQSchema()) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: jsonLd(
+                        simpleWebPageGraph(
+                            "/faq",
+                            "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
+                            "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
+                            [{ name: "FAQ", path: "/faq" }],
+                        ),
+                    ),
+                }}
             />
 
             <div className="min-h-screen bg-white font-sans text-slate-800">

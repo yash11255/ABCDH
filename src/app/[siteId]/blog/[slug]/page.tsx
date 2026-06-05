@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import Header from "../../../components/Header";
 import Footer from "../../../Footer";
 import {
-  absolutePostUrl,
   buildBlogListPath,
   buildBlogPostPath,
   fetchAllBlogSlugsForSite,
@@ -16,8 +15,8 @@ import {
   getSiteBaseUrl,
   processPostContent,
   resolveSiteId,
-  type BlogFaq,
 } from "@/lib/blog";
+import { blogPostingGraph, jsonLd } from "@/lib/schema";
 
 export const revalidate = 60;
 
@@ -28,52 +27,6 @@ type PageProps = {
 function normalizeKeywords(keywords?: string[]): string[] {
   if (!keywords?.length) return [];
   return keywords.map((item) => item.trim()).filter(Boolean);
-}
-
-function breadcrumbSchema(siteId: string, slug: string, title: string) {
-  const siteBase = getSiteBaseUrl(siteId);
-  const blogUrl = `${siteBase}${buildBlogListPath(siteId)}`;
-  const postUrl = `${siteBase}${buildBlogPostPath(siteId, slug)}`;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteBase,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Blog",
-        item: blogUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: title,
-        item: postUrl,
-      },
-    ],
-  };
-}
-
-function faqSchema(faqs: BlogFaq[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
 }
 
 export async function generateStaticParams() {
@@ -162,40 +115,27 @@ export default async function SiteBlogPostPage({ params }: PageProps) {
   const authorName = getPostAuthorName(post);
   const image = getPostImage(post);
 
-  const blogPostingSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: title,
-    description,
-    author: {
-      "@type": "Person",
-      name: authorName,
-    },
-    datePublished: post.createdAt,
-    dateModified: post.updatedAt || post.createdAt,
-    image,
-    publisher: {
-      "@type": "Organization",
-      name: siteId,
-      logo: {
-        "@type": "ImageObject",
-        url: "/PHOTO-2026-03-01-10-33-42.jpg",
-      },
-    },
-    mainEntityOfPage: absolutePostUrl(siteId, slug),
-  };
-
-  const breadcrumbs = breadcrumbSchema(siteId, slug, post.title);
   const hasFaq = Array.isArray(post.faqs) && post.faqs.length > 0;
-  const faqJsonLd = hasFaq ? faqSchema(post.faqs || []) : null;
+  const postPath = buildBlogPostPath(siteId, slug);
+  const schema = blogPostingGraph({
+    path: postPath,
+    post,
+    title,
+    description,
+    authorName,
+    image,
+    breadcrumbs: [
+      { name: "Blog", path: buildBlogListPath(siteId) },
+      { name: post.title, path: postPath },
+    ],
+    faqs: hasFaq ? post.faqs || [] : [],
+  });
 
   return (
     <>
       <Header />
       <main className="min-h-screen bg-white font-sans text-slate-800">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
-        {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
 
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-14 text-white md:px-20 md:py-16">
           <div className="mx-auto max-w-240">
