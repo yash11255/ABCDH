@@ -32,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/resources",
     "/faq",
     "/contact",
+    "/dr-ashish-kalla",
     "/knowledge-base",
     "/blog",
     ...getSeoTopicSlugs().map((slug) => `/${slug}`),

@@ -51,6 +51,7 @@ export default function ABCDFooter() {
             <h3 className="font-bold text-slate-900 text-sm mb-4">About the Framework</h3>
             <ul className="space-y-3 text-sm text-slate-700">
               <li><Link href="/about" className="hover:underline hover:text-blue-700">What is ABCD?</Link></li>
+              <li><Link href="/dr-ashish-kalla" className="hover:underline hover:text-blue-700">Dr. Ashish Kalla</Link></li>
               <li><Link href="/stages" className="hover:underline hover:text-blue-700">Staging Model</Link></li>
               <li><Link href="/complications" className="hover:underline hover:text-blue-700">Systemic Complications</Link></li>
               <li><Link href="/faq" className="hover:underline hover:text-blue-700">Frequently Asked Questions</Link></li>

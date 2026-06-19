@@ -90,6 +90,48 @@ export function personNode() {
     "@type": "Person",
     "@id": SCHEMA_IDS.founder,
     name: "Dr. Ashish Kalla",
+    honorificPrefix: "Dr.",
+    url: absoluteUrl("/dr-ashish-kalla"),
+    jobTitle: [
+      "Senior Consultant - Internal Medicine",
+      "Metabolic Health Specialist",
+      "Senior Longevity Consultant",
+    ],
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "MBBS",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "DNB (Internal Medicine)",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "ECFMG (USA)",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "Fellowship in Endocrinology & Diabetic Complications (USA)",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "Fellowship in Gastroenterology (USA)",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: "MRCP (UK)",
+      },
+    ],
+    knowsAbout: [
+      "Internal medicine",
+      "Metabolic health",
+      "Endocrinology",
+      "Diabetic complications",
+      "Gastroenterology",
+      "Longevity medicine",
+      "Adiposity-Based Chronic Disease",
+    ],
     affiliation: {
       "@id": SCHEMA_IDS.organization,
     },
@@ -357,6 +399,30 @@ export function contactPageGraph() {
         },
       },
       breadcrumbNode(path, [{ name: "Contact", path }]),
+    ],
+  };
+}
+
+export function doctorProfileGraph() {
+  const path = "/dr-ashish-kalla";
+  const name = "Dr. Ashish Kalla";
+  const description =
+    "Profile of Dr. Ashish Kalla, Senior Consultant in Internal Medicine, Metabolic Health Specialist, and Senior Longevity Consultant.";
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...webpageNode(path, name, description, "ProfilePage"),
+        mainEntity: {
+          "@id": SCHEMA_IDS.founder,
+        },
+        about: {
+          "@id": SCHEMA_IDS.founder,
+        },
+      },
+      breadcrumbNode(path, [{ name, path }]),
+      personNode(),
     ],
   };
 }
