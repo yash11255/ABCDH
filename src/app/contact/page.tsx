@@ -18,22 +18,36 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+91 81309 06807", "Mon-Sat, 9 AM - 6 PM"]
+      details: [
+        { label: "+91 81309 06807", href: "tel:+918130906807" },
+        { label: "Mon-Sat, 9 AM - 6 PM" },
+      ],
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["hr@imedi.health", "support@imedi.health", "Response within 24 hours"]
+      details: [
+        { label: "hr@imedi.health", href: "mailto:hr@imedi.health" },
+        { label: "support@imedi.health", href: "mailto:support@imedi.health" },
+        { label: "Response within 24 hours" },
+      ],
     },
     {
       icon: MapPin,
       title: "Location",
-      details: ["Two Horizon Centre, Level 6", "Golf Course Road, Gurugram", "Haryana 122002"]
+      details: [
+        { label: "Two Horizon Centre, Level 6" },
+        { label: "Golf Course Road, Gurugram" },
+        { label: "Haryana 122002" },
+      ],
     },
     {
       icon: Instagram,
       title: "Instagram",
-      details: ["@imedi.health", "Follow for updates and wellness insights"]
+      details: [
+        { label: "@abcd_health", href: "https://www.instagram.com/abcd_health/" },
+        { label: "Follow for updates and wellness insights" },
+      ],
     }
   ];
 
@@ -93,7 +107,19 @@ export default function Contact() {
                     <h3 className="font-bold text-slate-900 mb-2">{info.title}</h3>
                     <div className="space-y-1 text-sm text-slate-700">
                       {info.details.map((detail, i) => (
-                        <p key={i}>{detail}</p>
+                        detail.href ? (
+                          <a
+                            key={i}
+                            href={detail.href}
+                            target={detail.href.startsWith("http") ? "_blank" : undefined}
+                            rel={detail.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="block font-medium text-blue-700 hover:underline"
+                          >
+                            {detail.label}
+                          </a>
+                        ) : (
+                          <p key={i}>{detail.label}</p>
+                        )
                       ))}
                     </div>
                   </div>

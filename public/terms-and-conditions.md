@@ -26,4 +26,4 @@ We may update these Terms and Conditions at any time. Continued use of the site 
 These Terms are governed by the laws of your jurisdiction.
 
 ## Contact Us
-For questions, contact support@abcd-portal.com.
+For questions, contact support@imedi.health.

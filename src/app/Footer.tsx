@@ -106,17 +106,13 @@ export default function ABCDFooter() {
           <div>
             <h3 className="font-bold text-slate-900 text-sm mb-4">Clinical Contact</h3>
             <div className="space-y-4 text-sm text-slate-700">
-              {/* <div className="flex items-start gap-2">
-                <MapPin size={16} className="text-slate-500 shrink-0 mt-0.5" />
-                <span><br/></span>
-              </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-slate-500 shrink-0" />
-                <a href="tel:+13104233277" className="hover:underline hover:text-blue-700"></a>
-              </div> */}
+                <a href="tel:+918130906807" className="hover:underline hover:text-blue-700">+91 81309 06807</a>
+              </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-slate-500 shrink-0" />
-                <a href="mailto:support@abcd-precision.com" className="hover:underline hover:text-blue-700">support@abcd.health</a>
+                <a href="mailto:support@imedi.health" className="hover:underline hover:text-blue-700">support@imedi.health</a>
               </div>
             </div>
           </div>
@@ -140,9 +136,15 @@ export default function ABCDFooter() {
               <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
                 <Linkedin size={16} />
               </span>
-              <span className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors opacity-50 cursor-not-allowed">
+              <a
+                href="https://www.instagram.com/abcd_health/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ABCD Health Instagram"
+                className="w-8 h-8 bg-slate-300 text-slate-700 flex items-center justify-center rounded-sm transition-colors hover:bg-blue-700 hover:text-white"
+              >
                 <Instagram size={16} />
-              </span>
+              </a>
             </div>
           </div>
 

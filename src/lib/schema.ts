@@ -81,7 +81,7 @@ export function organizationNode() {
       postalCode: "122002",
       addressCountry: "IN",
     },
-    sameAs: ["https://imedi.health", "https://www.instagram.com/imedi.health/"],
+    sameAs: ["https://imedi.health", "https://www.instagram.com/abcd_health/"],
   };
 }
 

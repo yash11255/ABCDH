@@ -156,7 +156,7 @@ export default function AdvancedMedicalMasonry() {
               
               <div className="pt-4 border-t border-slate-100 inline-block">
                 <p className="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400 mb-2">Primary Contact</p>
-                <p className="text-slate-900 font-bold">clinical@abcd.health</p>
+                <a href="mailto:support@imedi.health" className="text-slate-900 font-bold hover:underline">support@imedi.health</a>
               </div>
             </div>
 
