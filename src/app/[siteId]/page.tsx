@@ -8,11 +8,12 @@ import {
   ABCD_PILLAR_SLUG,
   getSeoTopicBySlug,
   getSeoTopicSlugs,
-  SEO_TOPIC_PAGES,
 } from "@/lib/seo-content";
 import { buildSeoMetadata } from "@/lib/seo";
-import { getConfiguredSiteIds } from "@/lib/blog";
+import { DEFAULT_SITE_ID, fetchBlogPostsBySite, getConfiguredSiteIds } from "@/lib/blog";
 import { jsonLd, seoTopicGraph } from "@/lib/schema";
+import { getRelatedBlogPostsForSeoPage } from "@/lib/related-content";
+import { REQUIRED_SEO_BLOG_POSTS } from "@/lib/seo-blog-content";
 
 type PageProps = {
   params: Promise<{ siteId: string }>;
@@ -79,6 +80,13 @@ export default async function SeoTopicPage({ params }: PageProps) {
     .map((slug) => getSeoTopicBySlug(slug))
     .filter((item): item is NonNullable<typeof item> => Boolean(item))
     .slice(0, 3);
+
+  const blogResult = await fetchBlogPostsBySite(DEFAULT_SITE_ID, {
+    page: 1,
+    limit: 100,
+  });
+  const availableBlogPosts = blogResult.success ? [...blogResult.data, ...REQUIRED_SEO_BLOG_POSTS] : REQUIRED_SEO_BLOG_POSTS;
+  const relatedBlogPosts = getRelatedBlogPostsForSeoPage(page, availableBlogPosts, 3);
 
   const toc = [
     { id: "definition", label: "Definition" },
@@ -185,17 +193,29 @@ export default async function SeoTopicPage({ params }: PageProps) {
                     </Link>
                   ))}
                 </div>
-                <div className="mt-4 text-sm text-slate-600">
-                  Also read: {SEO_TOPIC_PAGES.slice(0, 3).map((item, idx) => (
-                    <span key={item.slug}>
-                      <Link href={`/${item.slug}`} className="text-blue-700 hover:text-blue-900">
-                        {item.slug.replace(/-/g, " ")}
-                      </Link>
-                      {idx < 2 ? ", " : ""}
-                    </span>
-                  ))}
-                </div>
               </section>
+
+              {relatedBlogPosts.length > 0 && (
+                <section className="mt-8 border border-slate-200 bg-white p-5">
+                  <h2 className="text-xl font-serif text-slate-900">Related Blogs</h2>
+                  <div className="mt-4 grid gap-4 md:grid-cols-3">
+                    {relatedBlogPosts.map((post) => (
+                      <Link
+                        key={post.slug}
+                        href={`/blog/${post.slug}`}
+                        className="border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-blue-300 hover:bg-blue-50"
+                      >
+                        <h3 className="text-base font-semibold leading-snug text-blue-800">{post.title}</h3>
+                        {(post.excerpt || post.metaDescription) && (
+                          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">
+                            {post.excerpt || post.metaDescription}
+                          </p>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
             </article>
 
             <aside className="h-fit border border-slate-200 bg-slate-50 p-5 lg:sticky lg:top-24">
