@@ -10,16 +10,17 @@ import {
 import Header from "../components/Header";
 import Footer from "../Footer";
 import { doctorProfileGraph, jsonLd } from "@/lib/schema";
+import { buildSeoMetadata } from "@/lib/seo";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "Dr. Ashish Kalla | Metabolic Health Specialist",
+export const metadata: Metadata = buildSeoMetadata({
+  title: "Dr. Ashish Kalla | Metabolic Health Specialist | ABCD Health",
   description:
-    "Profile of Dr. Ashish Kalla, Senior Consultant in Internal Medicine, Metabolic Health Specialist, and Senior Longevity Consultant.",
-  alternates: {
-    canonical: "/dr-ashish-kalla",
-  },
-};
+    "Profile of Dr. Ashish Kalla, Senior Consultant in Internal Medicine, Metabolic Health Specialist, and creator of the ABCD framework.",
+  canonicalPath: "/dr-ashish-kalla",
+  type: "profile",
+  image: "/dr-ashish-kalla.jpeg",
+});
 
 const credentials = [
   "MBBS",

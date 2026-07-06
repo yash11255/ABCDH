@@ -4,14 +4,14 @@ import { Instagram, Mail, Phone, MapPin, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
 import { contactPageGraph, jsonLd } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Contact Us | Clinical Portal",
-  description: "Get in touch with ABCD Health for support, inquiries, and clinical questions.",
-  alternates: {
-    canonical: '/contact',
-  },
-};
+export const metadata = buildSeoMetadata({
+  title: "Contact Us | ABCD Health",
+  description: "Contact ABCD Health for clinical inquiries, patient portal support, careers, and partnership questions about the ABCD framework.",
+  canonicalPath: '/contact',
+  type: 'website',
+});
 
 export default function Contact() {
   const contactInfo = [

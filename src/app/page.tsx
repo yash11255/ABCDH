@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import Link from "next/link";
 
 import Header from "./components/Header";
 import HeroSection from "./HeroSection";
@@ -7,15 +7,18 @@ import WhatIsABCD from "./WhatIsABCD";
 import ABCDvsObesity from "./ABCDvsObesity";
 import Footer from "./Footer";
 import { faqPageNode, jsonLd } from "@/lib/schema";
+import { buildSeoMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Adiposity-Based Chronic Disease | ABCD Health",
-  description:
-    "Learn why obesity is a disease through the adiposity-based chronic disease framework, including metabolic health assessment, metabolic health check pathways, and metabolic syndrome risk insights.",
-  alternates: {
-    canonical: "/",
-  },
-};
+const HOME_TITLE = "Adiposity-Based Chronic Disease | ABCD Health";
+const HOME_DESCRIPTION =
+  "Why obesity is a disease under the ABCD framework: metabolic health assessment, staging, and metabolic syndrome risk insights.";
+
+export const metadata: Metadata = buildSeoMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  canonicalPath: "/",
+  type: "website",
+});
 
 const homepageFaqs = [
   {
@@ -74,24 +77,24 @@ export default function Home() {
           </p>
 
           <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            <a href="/adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            <Link href="/adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               Adiposity-Based Chronic Disease (Pillar)
-            </a>
-            <a href="/what-is-adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            </Link>
+            <Link href="/what-is-adiposity-based-chronic-disease" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               What Is ABCD?
-            </a>
-            <a href="/abcd-staging-system" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            </Link>
+            <Link href="/abcd-staging-system" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               ABCD Staging System
-            </a>
-            <a href="/adiposity-based-chronic-disease-symptoms" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            </Link>
+            <Link href="/adiposity-based-chronic-disease-symptoms" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               ABCD Symptoms
-            </a>
-            <a href="/adiposity-based-chronic-disease-treatment" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            </Link>
+            <Link href="/adiposity-based-chronic-disease-treatment" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               ABCD Treatment
-            </a>
-            <a href="/cardiometabolic-disease-and-abcd" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
+            </Link>
+            <Link href="/cardiometabolic-disease-and-abcd" className="rounded-sm border border-slate-200 bg-white p-3 text-sm font-semibold text-blue-700 hover:text-blue-900">
               Cardiometabolic Disease and ABCD
-            </a>
+            </Link>
           </div>
         </div>
       </section>

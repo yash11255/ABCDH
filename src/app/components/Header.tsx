@@ -75,6 +75,9 @@ export default function Header() {
             <Link href="/resources" className={`transition-colors ${
               isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>Resources</Link>
+            <Link href="/blog" className={`transition-colors ${
+              isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
+            }`}>Blog</Link>
             <Link href="/faq" className={`transition-colors ${
               isScrolled ? 'hover:text-blue-600' : 'hover:text-slate-900'
             }`}>FAQ</Link>
@@ -105,6 +108,7 @@ export default function Header() {
           <Link href="/stages" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Stages</Link>
           <Link href="/complications" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Complications</Link>
           <Link href="/resources" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Resources</Link>
+          <Link href="/blog" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Blog</Link>
           <Link href="/faq" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">FAQ</Link>
           <Link href="/knowledge-base" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Knowledge Base</Link>
           <Link href="/contact" className="block py-2 px-4 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors text-sm font-semibold">Contact</Link>

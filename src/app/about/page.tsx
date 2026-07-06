@@ -4,14 +4,17 @@ import { CheckCircle2, AlertCircle, TrendingUp, Microscope, ChevronRight } from 
 import Header from '../components/Header';
 import Footer from '../Footer';
 import { jsonLd, medicalPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Adiposity-Based Chronic Disease Framework | About ABCD",
-  description: "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
-  alternates: {
-    canonical: '/about',
-  },
-};
+const ABOUT_TITLE = "Adiposity-Based Chronic Disease Framework | About ABCD";
+const ABOUT_DESCRIPTION = "Understand the ABCD framework: obesity's medical definition, pathophysiology, and the metabolic drivers behind adiposity-based chronic disease.";
+
+export const metadata = buildSeoMetadata({
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
+  canonicalPath: '/about',
+  type: 'article',
+});
 
 const aboutFaqs = [
   {
@@ -28,9 +31,8 @@ const aboutFaqs = [
 
 const aboutJsonLd = medicalPageGraph({
   path: "/about",
-  name: "Adiposity-Based Chronic Disease Framework | About ABCD",
-  description:
-    "Understand the adiposity disease model and adiposity based chronic disease framework, including obesity medical definition, pathophysiology of obesity, and metabolic drivers of obesity.",
+  name: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
   faqs: aboutFaqs,
   breadcrumbs: [{ name: "About ABCD", path: "/about" }],
   mainContentOfPage: ["Definition", "Core principles", "Why ABCD matters", "The four stages", "Systemic impact"],

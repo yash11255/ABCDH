@@ -11,15 +11,18 @@ import {
   ScrollText
 } from 'lucide-react';
 import { jsonLd, simpleWebPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Terms & Conditions | ABCD Clinical Portal',
-  description:
-    'Review the ABCD Clinical Portal terms and conditions, including site usage, responsibilities, and legal notices.',
-  alternates: {
-    canonical: '/terms-and-conditions',
-  },
-};
+const TERMS_TITLE = 'Terms & Conditions | ABCD Health';
+const TERMS_DESCRIPTION =
+  'Review the ABCD Health terms and conditions, including site usage, responsibilities, and legal notices.';
+
+export const metadata: Metadata = buildSeoMetadata({
+  title: TERMS_TITLE,
+  description: TERMS_DESCRIPTION,
+  canonicalPath: '/terms-and-conditions',
+  type: 'website',
+});
 
 const termsSections = [
   {
@@ -70,8 +73,8 @@ export default function TermsAndConditionsPage() {
           __html: jsonLd(
             simpleWebPageGraph(
               "/terms-and-conditions",
-              "Terms & Conditions | ABCD Clinical Portal",
-              "Review the ABCD Clinical Portal terms and conditions, including site usage, responsibilities, and legal notices.",
+              TERMS_TITLE,
+              TERMS_DESCRIPTION,
               [{ name: "Terms & Conditions", path: "/terms-and-conditions" }],
             ),
           ),

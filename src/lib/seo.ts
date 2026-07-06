@@ -4,7 +4,7 @@ type MetadataInput = {
   title: string;
   description: string;
   canonicalPath: string;
-  type?: "website" | "article";
+  type?: "website" | "article" | "profile";
   image?: string;
 };
 
@@ -24,10 +24,12 @@ export function buildSeoMetadata({
       canonical: canonicalPath,
     },
     openGraph: {
+      siteName: "ABCD Health",
       title,
       description,
       url: canonicalPath,
       type,
+      locale: "en_US",
       images: [{ url: image, alt: title }],
     },
     twitter: {

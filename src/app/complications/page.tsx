@@ -5,14 +5,17 @@ import Header from '../components/Header';
 import Footer from '../Footer';
 import SystemicImpactSection from '../SystemicImpactSection';
 import { jsonLd, medicalPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
-  description: "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
-  alternates: {
-    canonical: '/complications',
-  },
-};
+const COMPLICATIONS_TITLE = "Obesity Complications | Visceral Fat & Cardiometabolic Risk";
+const COMPLICATIONS_DESCRIPTION = "Obesity complications driven by adiposity dysfunction: visceral fat risks, insulin resistance, central obesity, and cardiometabolic disease.";
+
+export const metadata = buildSeoMetadata({
+  title: COMPLICATIONS_TITLE,
+  description: COMPLICATIONS_DESCRIPTION,
+  canonicalPath: '/complications',
+  type: 'article',
+});
 
 const complicationsFaqs = [
   {
@@ -29,9 +32,8 @@ const complicationsFaqs = [
 
 const complicationsJsonLd = medicalPageGraph({
   path: "/complications",
-  name: "Obesity Complications | Visceral Fat and Cardiometabolic Obesity Risks",
-  description:
-    "Review obesity related diseases driven by adiposity dysfunction, including visceral fat health risks, insulin resistance obesity, central obesity risks, and cardiometabolic obesity complications.",
+  name: COMPLICATIONS_TITLE,
+  description: COMPLICATIONS_DESCRIPTION,
   faqs: complicationsFaqs,
   breadcrumbs: [{ name: "Complications", path: "/complications" }],
   mainContentOfPage: ["Metabolic complications", "Biomechanical complications", "Cardiovascular complications", "Psychological complications"],

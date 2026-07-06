@@ -34,9 +34,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/dr-ashish-kalla",
     "/knowledge-base",
-    "/blog",
     ...getSeoTopicSlugs().map((slug) => `/${slug}`),
   ];
+
+  const lowPriorityRoutes = ["/privacy-policy", "/terms-and-conditions"];
 
   const requiredLocalBlogSlugs = getRequiredSeoBlogSlugs();
 
@@ -56,6 +57,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: "weekly",
         priority: 0.6,
+      });
+    }
+
+    for (const route of lowPriorityRoutes) {
+      staticEntries.push({
+        url: `${siteBase}${route}`,
+        lastModified: now,
+        changeFrequency: "yearly",
+        priority: 0.3,
       });
     }
 

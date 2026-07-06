@@ -3,15 +3,18 @@ import Header from "../components/Header";
 import ABCD_Knowledge_Base from "../ABCD_Knowledge_Base";
 import Footer from "../Footer";
 import { collectionPageGraph, faqPageNode, jsonLd } from "@/lib/schema";
+import { buildSeoMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "ABCD Knowledge Base | Clinical Portal",
-  description:
-    "Explore the ABCD knowledge base with pathophysiology references, staging concepts, and systemic complication taxonomy.",
-  alternates: {
-    canonical: "/knowledge-base",
-  },
-};
+const KB_TITLE = "ABCD Knowledge Base | ABCD Health";
+const KB_DESCRIPTION =
+  "Explore the ABCD knowledge base with pathophysiology references, staging concepts, and systemic complication taxonomy.";
+
+export const metadata: Metadata = buildSeoMetadata({
+  title: KB_TITLE,
+  description: KB_DESCRIPTION,
+  canonicalPath: "/knowledge-base",
+  type: "website",
+});
 
 const kbFaqs = [
   {
@@ -33,9 +36,8 @@ const kbFaqs = [
 
 const kbSchema = collectionPageGraph({
   path: "/knowledge-base",
-  name: "ABCD Knowledge Base",
-  description:
-    "Explore the ABCD knowledge base with pathophysiology references, staging concepts, and systemic complication taxonomy.",
+  name: KB_TITLE,
+  description: KB_DESCRIPTION,
   breadcrumbs: [{ name: "Knowledge Base", path: "/knowledge-base" }],
   items: [
     { name: "ABCD Framework Overview", description: "Core concepts behind adiposity-based chronic disease." },

@@ -54,11 +54,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/blog/${slug}`,
     },
     openGraph: {
+      siteName: "ABCD Health",
       title,
       description,
       url: `/blog/${slug}`,
       images: [{ url: image, alt: post.title }],
       type: "article",
+      locale: "en_US",
       publishedTime: post.createdAt,
       modifiedTime: post.updatedAt || post.createdAt,
     },

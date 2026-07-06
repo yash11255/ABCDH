@@ -37,16 +37,31 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const currentPage = toPageNumber(query.page);
   const siteId = resolveSiteId(rawSiteId);
   const canonicalPath = buildBlogListPath(siteId, currentPage);
+  const title = currentPage > 1 ? `Blog - Page ${currentPage} | ${siteId}` : `Blog | ${siteId}`;
+  const description = `Clinical and evidence-based blog articles for ${siteId}.`;
 
   return {
-    title: currentPage > 1 ? `Blog - Page ${currentPage} | ${siteId}` : `Blog | ${siteId}`,
-    description: `Clinical and evidence-based blog articles for ${siteId}.`,
+    title,
+    description,
     alternates: {
       canonical: canonicalPath,
     },
     robots: {
       index: true,
       follow: true,
+    },
+    openGraph: {
+      siteName: siteId,
+      title,
+      description,
+      url: canonicalPath,
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
   };
 }

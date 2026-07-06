@@ -77,6 +77,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: canonicalUrl,
     },
     openGraph: {
+      siteName: siteId,
       title,
       description,
       url: canonicalUrl,
@@ -87,6 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
       type: "article",
+      locale: "en_US",
       publishedTime: post.createdAt,
       modifiedTime: post.updatedAt || post.createdAt,
     },

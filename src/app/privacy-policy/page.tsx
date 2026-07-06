@@ -3,15 +3,18 @@ import type { Metadata } from 'next';
 import { ShieldCheck, Lock, Eye, Cookie, UserCheck, FileText, Bell } from 'lucide-react';
 import Header from '../components/Header';
 import { jsonLd, simpleWebPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | ABCD Clinical Portal',
-  description:
-    'Read the ABCD Clinical Portal privacy policy, including data handling, security safeguards, and user privacy commitments.',
-  alternates: {
-    canonical: '/privacy-policy',
-  },
-};
+const PRIVACY_TITLE = 'Privacy Policy | ABCD Health';
+const PRIVACY_DESCRIPTION =
+  'Read the ABCD Health privacy policy, including data handling, security safeguards, and user privacy commitments.';
+
+export const metadata: Metadata = buildSeoMetadata({
+  title: PRIVACY_TITLE,
+  description: PRIVACY_DESCRIPTION,
+  canonicalPath: '/privacy-policy',
+  type: 'website',
+});
 
 const policySections = [
   {
@@ -62,8 +65,8 @@ export default function PrivacyPolicyPage() {
           __html: jsonLd(
             simpleWebPageGraph(
               "/privacy-policy",
-              "Privacy Policy | ABCD Clinical Portal",
-              "Read the ABCD Clinical Portal privacy policy, including data handling, security safeguards, and user privacy commitments.",
+              PRIVACY_TITLE,
+              PRIVACY_DESCRIPTION,
               [{ name: "Privacy Policy", path: "/privacy-policy" }],
             ),
           ),

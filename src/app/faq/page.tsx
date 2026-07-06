@@ -3,21 +3,19 @@ import Link from 'next/link';
 import { Search, ChevronDown, ChevronRight } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../Footer';
-import { jsonLd, simpleWebPageGraph } from '@/lib/schema';
+import { absoluteUrl, jsonLd, simpleWebPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
+
+const FAQ_TITLE = "Obesity FAQ: Insulin Resistance & Metabolic Syndrome | ABCD Health";
+const FAQ_DESCRIPTION = "Evidence-based answers on insulin resistance symptoms, metabolic syndrome symptoms, and ABCD obesity treatment questions.";
 
 // 1. Enhanced SEO Metadata
-export const metadata = {
-    title: "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
-    description: "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
-    alternates: {
-        canonical: '/faq',
-    },
-    openGraph: {
-        title: "ABCD Clinical Framework FAQs",
-        description: "Answers to common clinical questions about Adiposity-Based Chronic Disease (ABCD).",
-        type: "website",
-    }
-};
+export const metadata = buildSeoMetadata({
+    title: FAQ_TITLE,
+    description: FAQ_DESCRIPTION,
+    canonicalPath: '/faq',
+    type: 'website',
+});
 
 // 2. Structured Data for UI mapping AND Schema generation
 const faqCategories = [
@@ -112,10 +110,10 @@ const generateFAQSchema = () => {
     return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "@id": "https://www.abcd.health/faq#faqpage",
-        url: "https://www.abcd.health/faq",
-        name: "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
-        description: "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
+        "@id": `${absoluteUrl("/faq")}#faqpage`,
+        url: absoluteUrl("/faq"),
+        name: FAQ_TITLE,
+        description: FAQ_DESCRIPTION,
         "mainEntity": faqCategories.flatMap(category =>
             category.faqs.map(faq => ({
                 "@type": "Question",
@@ -160,8 +158,8 @@ export default function FAQ() {
                     __html: jsonLd(
                         simpleWebPageGraph(
                             "/faq",
-                            "Obesity FAQ | Insulin Resistance Symptoms and Metabolic Syndrome Symptoms",
-                            "Get evidence-based answers for obesity FAQ topics, including insulin resistance symptoms, metabolic syndrome symptoms, obesity treatment questions, and obesity medical guidance.",
+                            FAQ_TITLE,
+                            FAQ_DESCRIPTION,
                             [{ name: "FAQ", path: "/faq" }],
                         ),
                     ),

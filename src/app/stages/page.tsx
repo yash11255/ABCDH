@@ -5,14 +5,17 @@ import Header from '../components/Header';
 import Footer from '../Footer';
 import ABCDStages from '../ABCDStages';
 import { jsonLd, medicalPageGraph } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Obesity Staging Model | ABCD Stage Classification",
-  description: "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
-  alternates: {
-    canonical: '/stages',
-  },
-};
+const STAGES_TITLE = "Obesity Staging Model | ABCD Stage Classification";
+const STAGES_DESCRIPTION = "Explore the ABCD obesity staging model, from stage classification to a medical framework for adiposity disease beyond BMI.";
+
+export const metadata = buildSeoMetadata({
+  title: STAGES_TITLE,
+  description: STAGES_DESCRIPTION,
+  canonicalPath: '/stages',
+  type: 'article',
+});
 
 const stagesFaqs = [
   {
@@ -29,9 +32,8 @@ const stagesFaqs = [
 
 const stagesJsonLd = medicalPageGraph({
   path: "/stages",
-  name: "Obesity Staging Model | ABCD Stage Classification",
-  description:
-    "Explore the obesity staging model in ABCD, including obesity stage classification, adiposity disease stages, and a medical classification of obesity beyond BMI.",
+  name: STAGES_TITLE,
+  description: STAGES_DESCRIPTION,
   faqs: stagesFaqs,
   breadcrumbs: [{ name: "ABCD Stages", path: "/stages" }],
   mainContentOfPage: ["Stage 1", "Stage 2", "Stage 3", "Stage 4", "Clinical markers", "Interventions"],

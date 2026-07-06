@@ -14,13 +14,44 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_NAME = "ABCD Health";
+const DEFAULT_TITLE = "ABCD Clinical Portal | Adiposity-Based Chronic Disease";
+const DEFAULT_DESCRIPTION =
+  "Comprehensive clinical framework for understanding and managing adiposity-based chronic disease with evidence-based staging system and complication-centric care approach.";
+const DEFAULT_IMAGE = "/PHOTO-2026-03-01-10-33-42.jpg";
+
 export const metadata: Metadata = {
-  title: "ABCD Clinical Portal | Adiposity-Based Chronic Disease",
-  description:
-    "Comprehensive clinical framework for understanding and managing adiposity-based chronic disease with evidence-based staging system and complication-centric care approach.",
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
   metadataBase: new URL("https://www.abcd.health"),
+  applicationName: SITE_NAME,
   alternates: {
     canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: "/",
+    type: "website",
+    locale: "en_US",
+    images: [{ url: DEFAULT_IMAGE, alt: DEFAULT_TITLE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_IMAGE],
   },
   manifest: "/favicon_io/site.webmanifest",
   icons: {

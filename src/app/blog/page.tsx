@@ -1,98 +1,82 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../Footer";
 import { collectionPageGraph, jsonLd } from "@/lib/schema";
-import { REQUIRED_SEO_BLOG_POSTS } from "@/lib/seo-blog-content";
+import { DEFAULT_SITE_ID, buildBlogListPath, fetchBlogPostsBySite, formatPublishedDate, getPostAuthorName } from "@/lib/blog";
 
-type Post = {
-  _id?: string;
-  id?: string;
-  title: string;
-  slug: string;
-  excerpt?: string;
-  metaDescription?: string;
-  author?: string;
-  createdAt?: string;
+export const revalidate = 60;
+
+const POSTS_PER_PAGE = 9;
+const PAGE_TITLE = "ABCD Health Blog: Adiposity-Based Chronic Disease Insights";
+const PAGE_DESCRIPTION =
+  "Evidence-based articles on adiposity-based chronic disease, ABCD staging, complications, and cardiometabolic outcomes.";
+
+type PageProps = {
+  searchParams: Promise<{ page?: string }>;
 };
 
-type PostListResponse = {
-  success: boolean;
-  data: Post[];
-  totalPages?: number;
-  message?: string;
-};
-
-const blogListSchema = collectionPageGraph({
-  path: "/blog",
-  name: "ABCD Health Blog",
-  description:
-    "Evidence-based insights on adiposity-based chronic disease, clinical pathways, and long-term cardiometabolic outcomes.",
-  breadcrumbs: [{ name: "Blog", path: "/blog" }],
-  type: "Blog",
-  items: REQUIRED_SEO_BLOG_POSTS.map((post) => ({
-    name: post.title,
-    description: post.excerpt || post.metaDescription,
-    url: `/blog/${post.slug}`,
-  })),
-});
-
-const formatDate = (value?: string) => {
-  if (!value) return "";
-  return new Date(value).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-};
-
-function BlogListLoader() {
-  return (
-    <div className="blog-loader-grid">
-      {Array.from({ length: 6 }).map((_, index) => (
-        <article key={index} className="flex h-full flex-col border border-slate-200 bg-white p-6">
-          
-        </article>
-      ))}
-    </div>
-  );
+function toPageNumber(value?: string): number {
+  const parsed = Number(value || "1");
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 1;
 }
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const query = await searchParams;
+  const currentPage = toPageNumber(query.page);
+  const canonicalPath = buildBlogListPath(DEFAULT_SITE_ID, currentPage);
 
-  useEffect(() => {
-    const load = async () => {
-      setLoading(true);
-      setError(null);
+  return {
+    title: currentPage > 1 ? `Blog - Page ${currentPage} | ABCD Health` : PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      siteName: "ABCD Health",
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      url: canonicalPath,
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+    },
+  };
+}
 
-      try {
-        const response = await fetch(`/api/posts?page=${page}&limit=9`, { cache: "no-store" });
-        const json: PostListResponse = await response.json();
-        if (!json.success) {
-          setError(json.message || "Unable to load blog posts.");
-          setPosts([]);
-          return;
-        }
+export default async function BlogPage({ searchParams }: PageProps) {
+  const query = await searchParams;
+  const currentPage = toPageNumber(query.page);
 
-        setPosts(json.data || []);
-        setTotalPages(json.totalPages || 1);
-      } catch {
-        setError("Unable to load blog posts right now.");
-        setPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const result = await fetchBlogPostsBySite(DEFAULT_SITE_ID, {
+    page: currentPage,
+    limit: POSTS_PER_PAGE,
+    revalidate,
+  });
 
-    load();
-  }, [page]);
+  const posts = result.success
+    ? Array.from(new Map(result.data.map((post) => [post.slug, post])).values())
+    : [];
+  const totalPages = Math.max(1, result.totalPages || 1);
+  const previousPageHref = currentPage > 1 ? buildBlogListPath(DEFAULT_SITE_ID, currentPage - 1) : null;
+  const nextPageHref = currentPage < totalPages ? buildBlogListPath(DEFAULT_SITE_ID, currentPage + 1) : null;
+
+  const blogListSchema = collectionPageGraph({
+    path: "/blog",
+    name: "ABCD Health Blog",
+    description: PAGE_DESCRIPTION,
+    breadcrumbs: [{ name: "Blog", path: "/blog" }],
+    type: "Blog",
+    items: posts.map((post) => ({
+      name: post.title,
+      description: post.excerpt || post.metaDescription,
+      url: `/blog/${post.slug}`,
+    })),
+  });
 
   return (
     <>
@@ -106,69 +90,72 @@ export default function BlogPage() {
           <div className="mx-auto max-w-350">
             <h1 className="text-4xl font-serif leading-tight md:text-5xl">ABCD Health Blog</h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-              Evidence-based insights on adiposity-based chronic disease, clinical pathways, and long-term cardiometabolic outcomes.
+              {PAGE_DESCRIPTION}
             </p>
           </div>
         </section>
 
         <section className="bg-white px-6 py-12 md:px-20">
           <div className="mx-auto max-w-350">
-            {error && <p className="mb-6 rounded-sm border border-rose-200 bg-rose-50 p-4 text-rose-700">{error}</p>}
-
-            {loading ? (
-              <div>
-                <div className="mb-6 space-y-3">
-                  <div className="blog-skeleton blog-skeleton--text h-4 w-40" />
-                  <div className="blog-skeleton blog-skeleton--text h-3 w-72 max-w-full" />
-                </div>
-                <BlogListLoader />
-              </div>
-            ) : (
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {Array.from(
-                  new Map(
-                    [...posts].map((post) => [post.slug, post]),
-                  ).values(),
-                ).map((post) => (
-                  <article
-                    key={post._id || post.id || post.slug}
-                    className="group flex h-full flex-col border border-slate-200 bg-white p-6 transition-colors hover:bg-slate-50"
-                  >
-                    <p className="text-xs uppercase tracking-wider text-slate-500">{formatDate(post.createdAt)}</p>
-                    <h2 className="mt-3 text-xl font-serif leading-tight text-slate-900">{post.title}</h2>
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">
-                      {post.excerpt || post.metaDescription || "Read the full article."}
-                    </p>
-                    <div className="mt-6 flex items-center justify-end border-t border-slate-200 pt-4">
-                      <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-blue-700 transition-colors group-hover:text-blue-900">
-                        Read article
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
+            {!result.success && (
+              <p className="mb-6 rounded-sm border border-rose-200 bg-rose-50 p-4 text-rose-700">
+                {result.message || "Unable to load blog posts."}
+              </p>
             )}
 
-            {!loading && totalPages > 1 && (
-              <div className="mt-10 flex items-center justify-center gap-3">
-                <button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                  className="rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40"
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {posts.map((post) => (
+                <article
+                  key={post._id || post.id || post.slug}
+                  className="group flex h-full flex-col border border-slate-200 bg-white p-6 transition-colors hover:bg-slate-50"
                 >
-                  Previous
-                </button>
-                <span className="text-sm text-slate-600">
-                  Page {page} of {totalPages}
-                </span>
-                <button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
-                  className="rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 disabled:opacity-40"
-                >
-                  Next
-                </button>
-              </div>
+                  <p className="text-xs uppercase tracking-wider text-slate-500">{formatPublishedDate(post.createdAt)}</p>
+                  <h2 className="mt-3 text-xl font-serif leading-tight text-slate-900">{post.title}</h2>
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">
+                    {post.excerpt || post.metaDescription || "Read the full article."}
+                  </p>
+                  <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
+                    <span className="text-xs uppercase tracking-wide text-slate-500">{getPostAuthorName(post)}</span>
+                    <Link href={`/blog/${post.slug}`} className="text-sm font-semibold text-blue-700 transition-colors group-hover:text-blue-900">
+                      Read article
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <nav aria-label="Pagination" className="mt-10 flex items-center justify-center gap-3">
+                {previousPageHref ? (
+                  <Link
+                    href={previousPageHref}
+                    rel="prev"
+                    className="rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100"
+                  >
+                    Previous
+                  </Link>
+                ) : (
+                  <span className="rounded-full border border-slate-200 px-5 py-2 text-sm font-medium text-slate-400">
+                    Previous
+                  </span>
+                )}
+
+                <span className="text-sm text-slate-600">Page {currentPage} of {totalPages}</span>
+
+                {nextPageHref ? (
+                  <Link
+                    href={nextPageHref}
+                    rel="next"
+                    className="rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100"
+                  >
+                    Next
+                  </Link>
+                ) : (
+                  <span className="rounded-full border border-slate-200 px-5 py-2 text-sm font-medium text-slate-400">
+                    Next
+                  </span>
+                )}
+              </nav>
             )}
           </div>
         </section>

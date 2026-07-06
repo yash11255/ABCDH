@@ -4,14 +4,17 @@ import { Download, ExternalLink, BookOpen, FileText, Calculator, Users, Search, 
 import Header from '../components/Header';
 import Footer from '../Footer';
 import { collectionPageGraph, faqPageNode, jsonLd } from '@/lib/schema';
+import { buildSeoMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Clinical Resources | Clinical Portal",
-  description: "Tools, guidelines, and resources for clinical management of ABCD-related complications. Access resources from Dr. Ashish Kalla's ABCD framework via abcd.health and imedi.health.",
-  alternates: {
-    canonical: '/resources',
-  },
-};
+const RESOURCES_TITLE = "Clinical Resources | ABCD Health";
+const RESOURCES_DESCRIPTION = "Tools, guidelines, and resources for clinical management of ABCD-related complications, from Dr. Ashish Kalla's ABCD framework.";
+
+export const metadata = buildSeoMetadata({
+  title: RESOURCES_TITLE,
+  description: RESOURCES_DESCRIPTION,
+  canonicalPath: '/resources',
+  type: 'website',
+});
 
 const resourcesFaqs = [
   {
@@ -42,9 +45,8 @@ const resourcesSchemaItems = [
 
 const resourcesSchema = collectionPageGraph({
   path: "/resources",
-  name: "Clinical Resources",
-  description:
-    "Tools, guidelines, and resources for clinical management of ABCD-related complications.",
+  name: RESOURCES_TITLE,
+  description: RESOURCES_DESCRIPTION,
   breadcrumbs: [{ name: "Resources", path: "/resources" }],
   items: resourcesSchemaItems,
 });
