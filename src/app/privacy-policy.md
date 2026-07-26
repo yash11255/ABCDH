@@ -29,4 +29,4 @@ You may request access, correction, or deletion of your personal data by contact
 We may update this Privacy Policy from time to time. Changes will be posted on this page.
 
 ## Contact Us
-For questions, contact support@imedi.health.
+For questions, contact abcdhealth0@gmail.com.

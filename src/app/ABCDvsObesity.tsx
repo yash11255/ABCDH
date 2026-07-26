@@ -156,7 +156,7 @@ export default function AdvancedMedicalMasonry() {
               
               <div className="pt-4 border-t border-slate-100 inline-block">
                 <p className="text-[10px] uppercase tracking-[0.4em] font-black text-slate-400 mb-2">Primary Contact</p>
-                <a href="mailto:support@imedi.health" className="text-slate-900 font-bold hover:underline">support@imedi.health</a>
+                <a href="mailto:abcdhealth0@gmail.com" className="text-slate-900 font-bold hover:underline">abcdhealth0@gmail.com</a>
               </div>
             </div>
 
@@ -168,7 +168,7 @@ export default function AdvancedMedicalMasonry() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Email Address</label>
-                  <input type="email" placeholder="john@hospital.com" className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-sm focus:ring-2 focus:ring-blue-600/10 transition-all outline-none text-slate-900" />
+                  <input type="email" placeholder="you@example.com" className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-sm focus:ring-2 focus:ring-blue-600/10 transition-all outline-none text-slate-900" />
                 </div>
               </div>
               <div className="space-y-2">

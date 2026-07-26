@@ -112,7 +112,7 @@ export default function ABCDFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-slate-500 shrink-0" />
-                <a href="mailto:support@imedi.health" className="hover:underline hover:text-blue-700">support@imedi.health</a>
+                <a href="mailto:abcdhealth0@gmail.com" className="hover:underline hover:text-blue-700">abcdhealth0@gmail.com</a>
               </div>
             </div>
           </div>

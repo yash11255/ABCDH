@@ -27,8 +27,7 @@ export default function Contact() {
       icon: Mail,
       title: "Email",
       details: [
-        { label: "hr@imedi.health", href: "mailto:hr@imedi.health" },
-        { label: "support@imedi.health", href: "mailto:support@imedi.health" },
+        { label: "abcdhealth0@gmail.com", href: "mailto:abcdhealth0@gmail.com" },
         { label: "Response within 24 hours" },
       ],
     },
@@ -54,22 +53,22 @@ export default function Contact() {
   const departments = [
     {
       name: "Clinical Inquiries",
-      email: "support@imedi.health",
+      email: "abcdhealth0@gmail.com",
       description: "Questions about ABCD staging, management, and clinical implementation."
     },
     {
       name: "Patient Portal Support",
-      email: "support@imedi.health",
+      email: "abcdhealth0@gmail.com",
       description: "Account issues, portal access, and patient resources."
     },
     {
       name: "Careers & HR",
-      email: "hr@imedi.health",
+      email: "abcdhealth0@gmail.com",
       description: "Hiring, careers, HR, and team-related inquiries."
     },
     {
       name: "Partnership & Integration",
-      email: "support@imedi.health",
+      email: "abcdhealth0@gmail.com",
       description: "EHR integration, health system partnerships, and collaborations."
     }
   ];
@@ -275,7 +274,7 @@ export default function Contact() {
                   Do you offer training programs?
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed pl-6">
-                  Yes. Contact <a href="mailto:support@imedi.health" className="text-blue-700 hover:underline">support@imedi.health</a> for training and education inquiries.
+                  Yes. Contact <a href="mailto:abcdhealth0@gmail.com" className="text-blue-700 hover:underline">abcdhealth0@gmail.com</a> for training and education inquiries.
                 </p>
               </div>
               <div>
@@ -284,7 +283,7 @@ export default function Contact() {
                   How can my organization partner with ABCD?
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed pl-6">
-                  We frequently collaborate with health systems for EHR integration. Reach out to <a href="mailto:support@imedi.health" className="text-blue-700 hover:underline">support@imedi.health</a>.
+                  We frequently collaborate with health systems for EHR integration. Reach out to <a href="mailto:abcdhealth0@gmail.com" className="text-blue-700 hover:underline">abcdhealth0@gmail.com</a>.
                 </p>
               </div>
             </div>
