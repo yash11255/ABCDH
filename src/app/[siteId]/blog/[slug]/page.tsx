@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "../../../components/Header";
@@ -136,7 +135,10 @@ export default async function SiteBlogPostPage({ params }: PageProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white font-sans text-slate-800">
+      <main
+        className="min-h-screen w-full max-w-full overflow-x-clip bg-white font-sans text-slate-800"
+        style={{ maxWidth: "100%", overflowX: "clip" }}
+      >
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
 
         <section className="border-t-4 border-blue-700 bg-slate-900 px-6 py-14 text-white md:px-20 md:py-16">
@@ -166,24 +168,24 @@ export default async function SiteBlogPostPage({ params }: PageProps) {
           </div>
         </section>
 
-        <article className="px-6 py-12 md:px-20">
-          <div className="mx-auto grid max-w-350 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
-            <div>
-              <div className="relative mb-8 h-64 w-full overflow-hidden rounded-sm border border-slate-200 md:h-96">
-                <Image
+        <article className="w-full max-w-full overflow-x-clip px-4 py-10 sm:px-6 md:px-20 md:py-12">
+          <div className="mx-auto grid w-full min-w-0 max-w-350 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
+            <div className="min-w-0 max-w-full">
+              <div className="mb-8 w-full max-w-full overflow-hidden rounded-sm border border-slate-200">
+                <img
                   src={image}
                   alt={post.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 70vw"
-                  className="object-cover"
-                  priority={false}
+                  className="block h-auto w-full max-w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
               {post.excerpt && <p className="text-lg leading-relaxed text-slate-700">{post.excerpt}</p>}
 
               <div
-                className="blog-content prose prose-slate mt-8 max-w-none prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline"
+                className="blog-content prose prose-slate mt-8 w-full min-w-0 max-w-none overflow-hidden break-words [&_a]:break-all [&_li]:max-w-full [&_ol]:max-w-full [&_ul]:max-w-full prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline"
+                style={{ overflowWrap: "anywhere", wordBreak: "break-word" }}
                 dangerouslySetInnerHTML={{ __html: processed.html }}
               />
 

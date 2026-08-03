@@ -6,7 +6,10 @@ import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube, Instagram, A
 
 export default function ABCDFooter() {
   return (
-    <footer className="bg-slate-100 border-t border-slate-300 pt-16 pb-8 px-6 md:px-20 font-sans text-slate-800">
+    <footer
+      className="w-full max-w-full overflow-x-clip bg-slate-100 border-t border-slate-300 pt-16 pb-8 px-6 md:px-20 font-sans text-slate-800"
+      style={{ maxWidth: "100%", overflowX: "clip" }}
+    >
       <div className="max-w-350 mx-auto">
         
         {/* Top Section: Branding & Newsletter (Structured and Clinical) */}
@@ -110,9 +113,15 @@ export default function ABCDFooter() {
                 <Phone size={16} className="text-slate-500 shrink-0" />
                 <a href="tel:+918130906807" className="hover:underline hover:text-blue-700">+91 81309 06807</a>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex min-w-0 items-center gap-2">
                 <Mail size={16} className="text-slate-500 shrink-0" />
-                <a href="mailto:abcdhealth0@gmail.com" className="hover:underline hover:text-blue-700">abcdhealth0@gmail.com</a>
+                <a
+                  href="mailto:abcdhealth0@gmail.com"
+                  className="min-w-0 break-all hover:underline hover:text-blue-700"
+                  style={{ overflowWrap: "anywhere", wordBreak: "break-all" }}
+                >
+                  abcdhealth0@gmail.com
+                </a>
               </div>
             </div>
           </div>
